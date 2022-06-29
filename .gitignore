@@ -1,0 +1,6 @@
+*.o
+*.d
+*.a
+*.sublime*
+so_long
+spritesheet/
