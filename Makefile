@@ -6,7 +6,7 @@
 #    By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/10 23:54:46 by nsierra-          #+#    #+#              #
-#    Updated: 2022/02/03 23:33:44 by nsierra-         ###   ########.fr        #
+#    Updated: 2022/07/01 19:24:00 by nsierra-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,6 +15,10 @@ NAME = cub3d
 TESTMAP = estupid.ber
 
 SRC = src/main.c \
+	src/errors/register.c \
+	src/map/init.c \
+	src/map/parse.c \
+	src/map/destroy.c \
 
 OBJ = $(SRC:.c=.o)
 DEPS = $(SRC:.c=.d)
@@ -24,7 +28,7 @@ CC = gcc
 LIBFT_DIR = libft
 MLX_DIR = minilibx-linux
 
-CFLAGS = -Wall -Wextra -Werror -pedantic -ansi -MMD \
+CFLAGS = -Wall -Wextra -Werror -pedantic -ansi -MMD -g3 \
 			-I . \
 			-I inc/ \
 			-I $(LIBFT_DIR) \

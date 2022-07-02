@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ajung <ajung@student.42.fr>                +#+  +:+       +#+        */
+/*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/22 12:48:31 by nsierra-          #+#    #+#             */
-/*   Updated: 2022/03/10 15:00:50 by ajung            ###   ########.fr       */
+/*   Updated: 2022/07/01 15:26:32 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,18 +14,13 @@
 # define LIBFT_H
 
 # include <stddef.h>
+# include "bool.h"
 
 typedef struct s_list
 {
 	void			*content;
 	struct s_list	*next;
 }	t_list;
-
-typedef enum s_bool
-{
-	FALSE,
-	TRUE
-}	t_bool;
 
 typedef struct s_vector
 {

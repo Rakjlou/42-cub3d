@@ -6,7 +6,7 @@
 #    By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/22 13:56:55 by nsierra-          #+#    #+#              #
-#    Updated: 2022/03/28 23:16:09 by nsierra-         ###   ########.fr        #
+#    Updated: 2022/07/01 17:02:11 by nsierra-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -157,7 +157,7 @@ OBJ = $(addprefix $(LIBFT_DIR), $(LIBFT_SRC:.c=.o)) \
 
 CC = gcc
 
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -g3
 IFLAGS = -I.
 
 all: $(NAME)

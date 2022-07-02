@@ -6,7 +6,7 @@
 /*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/25 13:23:46 by nsierra-          #+#    #+#             */
-/*   Updated: 2022/01/25 14:47:39 by nsierra-         ###   ########.fr       */
+/*   Updated: 2022/07/01 16:41:57 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,4 +24,11 @@ void	fterr_default_print(t_fterr *error)
 {
 	fterr_print_ecode(error);
 	ftfprintf(STDERR_FILENO, "%s\n", error->message);
+}
+
+void	fterr_default_printf(t_fterr *error)
+{
+	fterr_print_ecode(error);
+	ftfprintf(STDERR_FILENO, error->message, error->data);
+	ftfprintf(STDERR_FILENO, "%s", "\n");
 }

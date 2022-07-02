@@ -6,7 +6,7 @@
 /*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/25 12:06:56 by nsierra-          #+#    #+#             */
-/*   Updated: 2022/01/25 14:49:10 by nsierra-         ###   ########.fr       */
+/*   Updated: 2022/07/01 16:17:37 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ t_fterr	*fterr_register(
 
 /* Those are internals, they should be considered private */
 void	fterr_default_print(t_fterr *error);
+void	fterr_default_printf(t_fterr *error);
 t_fterr	*fterr_set_current(t_fterr *error);
 t_fterr	*fterr_current(void);
 t_lst	*fterr_get_list(void);
