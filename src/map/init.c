@@ -6,7 +6,7 @@
 /*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/01 14:53:03 by nsierra-          #+#    #+#             */
-/*   Updated: 2022/07/01 19:26:17 by nsierra-         ###   ########.fr       */
+/*   Updated: 2022/07/01 21:04:15 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,13 +33,6 @@ static t_bool	line_callback(const char *line, void *data)
 	return (TRUE);
 }
 
-static t_bool	map_candidate_is_valid(t_map_candidate *candidate)
-{
-	if (candidate->lines.size == 0)
-		return (fterr_set(E_MAP_EMPTY, candidate->filename, NULL), FALSE);
-	return (TRUE);
-}
-
 t_map	*map_init(char *filename)
 {
 	t_map_candidate	candidate;
@@ -63,19 +56,3 @@ t_map	*map_init(char *filename)
 		return (map_candidate_destroy(&candidate), NULL);
 	return (map_candidate_destroy(&candidate), NULL);
 }
-
-/*	t_readf_status	status;
-	t_map			*map;
-
-	map = _map();
-	map->file.name = filename;
-	status = readf(filename, map_readl, map);
-	if (status == FTRF_E_FILE_OPEN)
-		return (fterr_set(MAP_FILE_OPEN, (void *)filename, NULL), FALSE);
-	else if (status == FTRF_E_READL)
-		return (FALSE);
-	else if (map->file.data.size == 0)
-		return (fterr_set(MAP_EMPTY_OR_DIR, (void *)filename, NULL), FALSE);
-	map_set_length_height(map);
-	return (map_validate());
-*/

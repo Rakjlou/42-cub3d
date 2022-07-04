@@ -6,7 +6,7 @@
 /*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/24 21:26:59 by nsierra-          #+#    #+#             */
-/*   Updated: 2022/07/01 19:26:14 by nsierra-         ###   ########.fr       */
+/*   Updated: 2022/07/01 21:04:09 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,5 +32,6 @@ typedef struct s_map_candidate
 
 t_bool	map_candidate_parse(t_map_candidate *candidate);
 void	map_candidate_destroy(t_map_candidate *candidate);
+t_bool	map_candidate_is_valid(t_map_candidate *candidate);
 
 #endif

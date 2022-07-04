@@ -1,21 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   is_valid.c                                         :+:      :+:    :+:   */
+/*   check_emptiness.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/01 20:32:21 by nsierra-          #+#    #+#             */
-/*   Updated: 2022/07/01 21:20:53 by nsierra-         ###   ########.fr       */
+/*   Created: 2022/07/01 20:40:52 by nsierra-          #+#    #+#             */
+/*   Updated: 2022/07/01 20:55:18 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "map/map_validation.h"
+#include "map/map_candidate.h"
+#include "errors.h"
+#include "bool.h"
 
-t_bool	map_candidate_is_valid(t_map_candidate *candidate)
+t_bool	check_emptiness(t_map_candidate *candidate)
 {
-	if (!check_emptiness(candidate) || !check_filename(candidate)
-		|| !check_map_chars(candidate))
-		return (FALSE);
+	if (candidate->lines.size == 0)
+		return (fterr_set(E_MAP_EMPTY, candidate->filename, NULL), FALSE);
 	return (TRUE);
 }

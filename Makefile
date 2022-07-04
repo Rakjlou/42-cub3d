@@ -6,7 +6,7 @@
 #    By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/10 23:54:46 by nsierra-          #+#    #+#              #
-#    Updated: 2022/07/01 19:24:00 by nsierra-         ###   ########.fr        #
+#    Updated: 2022/07/01 21:21:02 by nsierra-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,6 +19,10 @@ SRC = src/main.c \
 	src/map/init.c \
 	src/map/parse.c \
 	src/map/destroy.c \
+	src/map/validation/is_valid.c \
+	src/map/validation/check_emptiness.c \
+	src/map/validation/check_filename.c \
+	src/map/validation/check_map_chars.c \
 
 OBJ = $(SRC:.c=.o)
 DEPS = $(SRC:.c=.d)

@@ -6,7 +6,7 @@
 /*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/25 13:23:46 by nsierra-          #+#    #+#             */
-/*   Updated: 2022/07/01 16:41:57 by nsierra-         ###   ########.fr       */
+/*   Updated: 2022/07/01 20:46:44 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 
 void	fterr_print_ecode(t_fterr *error)
 {
-	ftfprintf(STDERR_FILENO, "[E%d] ", error->code);
+	ftfprintf(STDERR_FILENO, "Error\n[E%d] ", error->code);
 }
 
 void	fterr_default_print(t_fterr *error)
