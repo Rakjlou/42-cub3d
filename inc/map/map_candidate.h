@@ -6,7 +6,7 @@
 /*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/24 21:26:59 by nsierra-          #+#    #+#             */
-/*   Updated: 2022/07/07 22:37:55 by nsierra-         ###   ########.fr       */
+/*   Updated: 2022/07/08 01:20:15 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,13 @@ typedef enum e_parse_mode
 typedef struct s_map_candidate
 {
 	char	*filename;
+	char	*c;
+	char	*north_texture;
+	char	*south_texture;
+	char	*east_texture;
+	char	*west_texture;
+	int		floor_color;
+	int		ceilling_color;
 	t_lst	lines;
 	t_lst	map;
 	t_lst	meta;

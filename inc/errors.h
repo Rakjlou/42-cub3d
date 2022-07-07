@@ -6,7 +6,7 @@
 /*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/01 14:55:44 by nsierra-          #+#    #+#             */
-/*   Updated: 2022/07/07 21:56:25 by nsierra-         ###   ########.fr       */
+/*   Updated: 2022/07/08 00:50:06 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@
 # define E_MAP_CHAR_MSG "map has at least one invalid character"
 # define E_MAP_SPAWN_MISS_MSG "no spawn found on the map"
 # define E_MAP_SPAWN_EXTRA_MSG "too much spawns on the map"
+# define E_META_INVALID_MSG "%s is an invalid metadata identifier"
+# define E_META_FORMAT_MSG "at least one metadata line has a wrong format"
 
 typedef enum e_error_code
 {
@@ -36,7 +38,9 @@ typedef enum e_error_code
 	E_MAP_EXT2,
 	E_MAP_CHAR,
 	E_MAP_SPAWN_MISS,
-	E_MAP_SPAWN_EXTRA
+	E_MAP_SPAWN_EXTRA,
+	E_META_INVALID,
+	E_META_FORMAT
 }	t_error_code;
 
 t_bool	errors_register(void);
