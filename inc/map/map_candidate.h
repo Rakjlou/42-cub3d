@@ -6,7 +6,7 @@
 /*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/24 21:26:59 by nsierra-          #+#    #+#             */
-/*   Updated: 2022/07/01 21:04:09 by nsierra-         ###   ########.fr       */
+/*   Updated: 2022/07/07 22:37:55 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ typedef enum e_parse_mode
 
 typedef struct s_map_candidate
 {
-	char 	*filename;
+	char	*filename;
 	t_lst	lines;
 	t_lst	map;
 	t_lst	meta;

@@ -6,7 +6,7 @@
 #    By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/10 23:54:46 by nsierra-          #+#    #+#              #
-#    Updated: 2022/07/01 21:21:02 by nsierra-         ###   ########.fr        #
+#    Updated: 2022/07/07 22:52:21 by nsierra-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,6 +23,7 @@ SRC = src/main.c \
 	src/map/validation/check_emptiness.c \
 	src/map/validation/check_filename.c \
 	src/map/validation/check_map_chars.c \
+	src/map/validation/check_spawn.c \
 
 OBJ = $(SRC:.c=.o)
 DEPS = $(SRC:.c=.d)
@@ -73,32 +74,27 @@ n:
 
 t:
 	valgrind --leak-check=full --track-origins=yes --show-leak-kinds=all --show-reachable=yes \
-	./so_long map/$(m).ber
+	./cub3d map/$(m).ber
 
 test: all
 	valgrind --leak-check=full --track-origins=yes --show-leak-kinds=all --show-reachable=yes \
-	./so_long map/$(TESTMAP)
+	./cub3d map/$(TESTMAP)
 
 test_failure: all
-	chmod -r map/fail/fail-read-rights.ber && \
-	echo "\033[0;32m.ber file\033[0m" && ./so_long map/fail/.ber || \
-	echo "\033[0;32mduplicate exit\033[0m" && ./so_long map/fail/fail-duplicate-exit.ber || \
-	echo "\033[0;32mnon existing file\033[0m" && ./so_long map/fail/idontexist.ber || \
-	echo "\033[0;32mduplicate spawn\033[0m" && ./so_long map/fail/fail-duplicate-spawn.ber || \
-	echo "\033[0;32mempty map\033[0m" && ./so_long map/fail/fail-empty.ber || \
-	echo "\033[0;32mwrong extension\033[0m" && ./so_long map/fail/fail-extension.be || \
-	echo "\033[0;32mno special case\033[0m" && ./so_long map/fail/fail-lacks-all.ber || \
-	echo "\033[0;32mno collectible\033[0m" && ./so_long map/fail/fail-lacks-collectible.ber || \
-	echo "\033[0;32mno exit\033[0m" && ./so_long map/fail/fail-lacks-exit.ber || \
-	echo "\033[0;32mno spawn\033[0m" && ./so_long map/fail/fail-lacks-spawn.ber || \
-	echo "\033[0;32mno read rights\033[0m" && ./so_long map/fail/fail-read-rights.ber || \
-	echo "\033[0;32munknown char\033[0m" && ./so_long map/fail/fail-unknown-char.ber || \
-	echo "\033[0;32mnot surrounded by walls\033[0m" && ./so_long map/fail/fail-wall-rectangle.ber || \
-	echo "\033[0;32mnot rectangle\033[0m" && ./so_long map/fail/fail-not-rectangle.ber || \
-	chmod +r map/fail/fail-read-rights.ber
+	chmod -r map/fail/fail-read-rights.cub && \
+	echo "\033[0;32m.cub file\033[0m" && ./cub3d map/fail/.cub || \
+	echo "\033[0;32mnon existing file\033[0m" && ./cub3d map/fail/idontexist.cub || \
+	echo "\033[0;32mduplicate spawn\033[0m" && ./cub3d map/fail/fail-duplicate-spawn.cub || \
+	echo "\033[0;32mempty map\033[0m" && ./cub3d map/fail/fail-empty.cub || \
+	echo "\033[0;32mwrong extension\033[0m" && ./cub3d map/fail/fail-extension.cu || \
+	echo "\033[0;32mno spawn\033[0m" && ./cub3d map/fail/fail-lacks-spawn.cub || \
+	echo "\033[0;32mno read rights\033[0m" && ./cub3d map/fail/fail-read-rights.cub || \
+	echo "\033[0;32munknown char\033[0m" && ./cub3d map/fail/fail-unknown-char.cub || \
+	echo "\033[0;32mnot surrounded by walls\033[0m" && ./cub3d map/fail/fail-wall-surround.cub || \
+	chmod +r map/fail/fail-read-rights.cub
 
 gdb: all
-	gdb --args ./so_long map/$(TESTMAP)
+	gdb --args ./cub3d map/$(TESTMAP)
 
 
 .PHONY: clean fclean re libft mlx
