@@ -6,7 +6,7 @@
 /*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/24 21:26:59 by nsierra-          #+#    #+#             */
-/*   Updated: 2022/07/08 01:05:46 by nsierra-         ###   ########.fr       */
+/*   Updated: 2022/07/12 00:31:54 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@
 # define META_ELEM_COUNT 6
 # define META_ELEM_SIZE 2
 
-# include "bool.h"
 # include "map/map_candidate.h"
 # include "errors.h"
 # include "libft.h"

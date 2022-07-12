@@ -1,25 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   destroy.c                                          :+:      :+:    :+:   */
+/*   ft_str_all.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/01 14:53:03 by nsierra-          #+#    #+#             */
-/*   Updated: 2022/07/12 01:01:03 by nsierra-         ###   ########.fr       */
+/*   Created: 2022/07/11 22:22:06 by nsierra-          #+#    #+#             */
+/*   Updated: 2022/07/11 22:25:48 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
-#include "map/map_candidate.h"
+#include "libft.h"
 
-void	map_candidate_destroy(t_map_candidate *candidate)
+t_bool	ft_str_all(char *str, int (*check)(int c))
 {
-	lst_destroy_nodes(&candidate->lines, free);
-	lst_destroy_nodes(&candidate->map, free);
-	lst_destroy_nodes(&candidate->meta, free);
-	free(candidate->north_texture);
-	free(candidate->south_texture);
-	free(candidate->east_texture);
-	free(candidate->west_texture);
+	int		i;
+
+	i = 0;
+	while (str && str[i])
+	{
+		if (!check((unsigned char)str[i]))
+			return (FALSE);
+		++i;
+	}
+	return (TRUE);
 }

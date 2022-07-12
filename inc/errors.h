@@ -6,7 +6,7 @@
 /*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/01 14:55:44 by nsierra-          #+#    #+#             */
-/*   Updated: 2022/07/08 00:50:06 by nsierra-         ###   ########.fr       */
+/*   Updated: 2022/07/12 01:23:47 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,8 @@
 # define E_MAP_SPAWN_EXTRA_MSG "too much spawns on the map"
 # define E_META_INVALID_MSG "%s is an invalid metadata identifier"
 # define E_META_FORMAT_MSG "at least one metadata line has a wrong format"
+# define E_COLOR_INVALID_MSG "at least one color component is too big (0 - 255)"
+# define E_META_MISSING_MSG "at least a color or a texture is missing"
 
 typedef enum e_error_code
 {
@@ -40,7 +42,9 @@ typedef enum e_error_code
 	E_MAP_SPAWN_MISS,
 	E_MAP_SPAWN_EXTRA,
 	E_META_INVALID,
-	E_META_FORMAT
+	E_META_FORMAT,
+	E_COLOR_INVALID,
+	E_META_MISSING
 }	t_error_code;
 
 t_bool	errors_register(void);

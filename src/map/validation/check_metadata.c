@@ -6,10 +6,11 @@
 /*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/25 20:07:37 by nsierra-          #+#    #+#             */
-/*   Updated: 2022/07/08 01:23:20 by nsierra-         ###   ########.fr       */
+/*   Updated: 2022/07/12 01:26:47 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <limits.h>
 #include "map/map_validation.h"
 
 static t_bool	set_texture(char **texture, char *texture_raw)
@@ -19,22 +20,36 @@ static t_bool	set_texture(char **texture, char *texture_raw)
 	raw_dup = ft_strdup(texture_raw);
 	if (raw_dup == NULL)
 		return (fterr_set_error(E_MALLOC), FALSE);
+	if (texture && *texture != NULL)
+		free(*texture);
 	*texture = raw_dup;
 	return (TRUE);
 }
 
-static t_bool	set_color(int *color, char *color_raw)
+/* "sp" is just a shorthand for "color_split" for norm reasons */
+static t_bool	check_set_color(t_color *color, char *color_raw)
 {
-	char	**color_split;
-	int		tmp;
+	char	**sp;
 
-	color_split = ft_split(color_raw, ",");
-	if (color_split == NULL)
+	sp = ft_split(color_raw, ",");
+	if (sp == NULL)
 		return (fterr_set_error(E_MALLOC), FALSE);
-	else if (ft_cmatrix_size(color_split) != 3)
-		return (fterr_set_error(E_META_FORMAT_MSG), FALSE);
-	/* WIP */
-	return (TRUE);
+	else if (ft_cmatrix_size(sp) != 3 || !ft_str_all(sp[0], ft_isdigit)
+		|| !ft_str_all(sp[1], ft_isdigit) || !ft_str_all(sp[0], ft_isdigit))
+	{
+		return (ft_cmatrix_free(sp), fterr_set_error(E_META_FORMAT), FALSE);
+	}
+	else if (ft_strlen(sp[0]) > 3 || ft_strlen(sp[1]) > 3
+		|| ft_strlen(sp[2]) > 3 || ft_atoi(sp[0]) > UCHAR_MAX
+		|| ft_atoi(sp[1]) > UCHAR_MAX || ft_atoi(sp[2]) > UCHAR_MAX)
+	{
+		return (ft_cmatrix_free(sp), fterr_set_error(E_COLOR_INVALID), FALSE);
+	}
+	*color = color_build((unsigned char)ft_atoi(sp[0]),
+			(unsigned char)ft_atoi(sp[1]),
+			(unsigned char)ft_atoi(sp[2]),
+			UCHAR_MAX);
+	return (ft_cmatrix_free(sp), TRUE);
 }
 
 static t_bool	check_specific_meta(
@@ -51,9 +66,15 @@ static t_bool	check_specific_meta(
 	else if (meta_identifier == 3)
 		return (set_texture(&candidate->west_texture, meta[1]));
 	else if (meta_identifier == 4)
-		return (set_color(&candidate->floor_color, meta[1]));
+	{
+		candidate->floor_color_set = TRUE;
+		return (check_set_color(&candidate->floor_color, meta[1]));
+	}
 	else if (meta_identifier == 5)
-		return (set_color(&candidate->ceilling_color, meta[1]));
+	{
+		candidate->ceilling_color_set = TRUE;
+		return (check_set_color(&candidate->ceilling_color, meta[1]));
+	}
 	return (FALSE);
 }
 
@@ -76,25 +97,34 @@ static t_bool	check_meta_line(t_map_candidate *candidate, char **meta)
 			return (check_specific_meta(candidate, meta, i));
 		++i;
 	}
-	return (fterr_set(E_INVALID_META, ft_strdup(element[0]), free), FALSE);
+	return (fterr_set(E_META_INVALID, ft_strdup(meta[0]), free), FALSE);
 }
 
 t_bool	check_metadata(t_map_candidate *candidate)
 {
 	t_iter	iter;
-	char	*line;
 	char	**line_split;
 
 	iter_init(&iter, &candidate->meta, DESC);
 	while (iter_next(&iter))
 	{
-		line = (char *)iter.data;
-		line_split = ft_split(line, " \t\v\n\f\r");
+		line_split = ft_split((char *)iter.data, " \t\v\n\f\r");
 		if (line_split == NULL)
 			return (fterr_set_error(E_MALLOC), FALSE);
 		else if (ft_cmatrix_size(line_split) != META_ELEM_SIZE)
+		{
 			return (ft_cmatrix_free(line_split),
 				fterr_set_error(E_META_FORMAT), FALSE);
+		}
+		else if (!check_meta_line(candidate, line_split))
+			return (ft_cmatrix_free(line_split), FALSE);
+		ft_cmatrix_free(line_split);
+	}
+	if (!candidate->north_texture || !candidate->south_texture
+		|| !candidate->east_texture || !candidate->west_texture
+		|| !candidate->floor_color_set || !candidate->ceilling_color_set)
+	{
+		return (fterr_set_error(E_META_MISSING), FALSE);
 	}
 	return (TRUE);
 }

@@ -1,25 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   destroy.c                                          :+:      :+:    :+:   */
+/*   color.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/01 14:53:03 by nsierra-          #+#    #+#             */
-/*   Updated: 2022/07/12 01:01:03 by nsierra-         ###   ########.fr       */
+/*   Created: 2022/07/01 14:55:44 by nsierra-          #+#    #+#             */
+/*   Updated: 2022/07/12 00:40:10 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
-#include "map/map_candidate.h"
+#ifndef COLOR_H
+# define COLOR_H
 
-void	map_candidate_destroy(t_map_candidate *candidate)
+typedef int	t_color;
+
+typedef enum e_color_component
 {
-	lst_destroy_nodes(&candidate->lines, free);
-	lst_destroy_nodes(&candidate->map, free);
-	lst_destroy_nodes(&candidate->meta, free);
-	free(candidate->north_texture);
-	free(candidate->south_texture);
-	free(candidate->east_texture);
-	free(candidate->west_texture);
-}
+	RED = 0xFF000000,
+	GREEN = 0x00FF0000,
+	BLUE = 0x0000FF00,
+	ALPHA = 0x000000FF
+}	t_color_component;
+
+t_color	color_build(
+			unsigned char red,
+			unsigned char green,
+			unsigned char blue,
+			unsigned char alpha);
+
+#endif

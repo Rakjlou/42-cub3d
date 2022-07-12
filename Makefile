@@ -6,7 +6,7 @@
 #    By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/10 23:54:46 by nsierra-          #+#    #+#              #
-#    Updated: 2022/07/07 22:52:21 by nsierra-         ###   ########.fr        #
+#    Updated: 2022/07/12 01:38:16 by nsierra-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,6 +16,7 @@ TESTMAP = estupid.ber
 
 SRC = src/main.c \
 	src/errors/register.c \
+	src/mlx/color.c \
 	src/map/init.c \
 	src/map/parse.c \
 	src/map/destroy.c \
@@ -24,6 +25,7 @@ SRC = src/main.c \
 	src/map/validation/check_filename.c \
 	src/map/validation/check_map_chars.c \
 	src/map/validation/check_spawn.c \
+	src/map/validation/check_metadata.c \
 
 OBJ = $(SRC:.c=.o)
 DEPS = $(SRC:.c=.d)
@@ -33,7 +35,7 @@ CC = gcc
 LIBFT_DIR = libft
 MLX_DIR = minilibx-linux
 
-CFLAGS = -Wall -Wextra -Werror -pedantic -ansi -MMD -g3 \
+CFLAGS = -Wall -Wextra -Werror -MMD -g3 \
 			-I . \
 			-I inc/ \
 			-I $(LIBFT_DIR) \
@@ -90,6 +92,14 @@ test_failure: all
 	echo "\033[0;32mno spawn\033[0m" && ./cub3d map/fail/fail-lacks-spawn.cub || \
 	echo "\033[0;32mno read rights\033[0m" && ./cub3d map/fail/fail-read-rights.cub || \
 	echo "\033[0;32munknown char\033[0m" && ./cub3d map/fail/fail-unknown-char.cub || \
+	echo "\033[0;32mcolor negative\033[0m" && ./cub3d map/fail/fail-color-negative.cub || \
+	echo "\033[0;32mcolor too high\033[0m" && ./cub3d map/fail/fail-color-too-high.cub || \
+	echo "\033[0;32mcolor missing\033[0m" && ./cub3d map/fail/fail-color-missing.cub || \
+	echo "\033[0;32mcolor format (1 block)\033[0m" && ./cub3d map/fail/fail-color-format.cub || \
+	echo "\033[0;32mcolor format (> 2 blocks)\033[0m" && ./cub3d map/fail/fail-color-format-2.cub || \
+	echo "\033[0;32mtexture missing\033[0m" && ./cub3d map/fail/fail-texture-missing.cub || \
+	echo "\033[0;32mtexture format (1 block)\033[0m" && ./cub3d map/fail/fail-texture-format.cub || \
+	echo "\033[0;32mtexture format (> 2 blocks)\033[0m" && ./cub3d map/fail/fail-texture-format-2.cub || \
 	echo "\033[0;32mnot surrounded by walls\033[0m" && ./cub3d map/fail/fail-wall-surround.cub || \
 	chmod +r map/fail/fail-read-rights.cub
 

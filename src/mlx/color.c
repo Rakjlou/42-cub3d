@@ -1,25 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   destroy.c                                          :+:      :+:    :+:   */
+/*   color.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/01 14:53:03 by nsierra-          #+#    #+#             */
-/*   Updated: 2022/07/12 01:01:03 by nsierra-         ###   ########.fr       */
+/*   Updated: 2022/07/12 00:43:24 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
-#include "map/map_candidate.h"
+#include "mlx/color.h"
 
-void	map_candidate_destroy(t_map_candidate *candidate)
+t_color	color_build(
+	unsigned char red,
+	unsigned char green,
+	unsigned char blue,
+	unsigned char alpha)
 {
-	lst_destroy_nodes(&candidate->lines, free);
-	lst_destroy_nodes(&candidate->map, free);
-	lst_destroy_nodes(&candidate->meta, free);
-	free(candidate->north_texture);
-	free(candidate->south_texture);
-	free(candidate->east_texture);
-	free(candidate->west_texture);
+	t_color	color;
+
+	color = 0;
+	color = red | (green << 8) | (blue << 16) | (alpha << 24);
+	return (color);
 }
