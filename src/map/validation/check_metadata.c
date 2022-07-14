@@ -6,7 +6,7 @@
 /*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/25 20:07:37 by nsierra-          #+#    #+#             */
-/*   Updated: 2022/07/12 01:26:47 by nsierra-         ###   ########.fr       */
+/*   Updated: 2022/07/14 01:54:11 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,30 +26,30 @@ static t_bool	set_texture(char **texture, char *texture_raw)
 	return (TRUE);
 }
 
-/* "sp" is just a shorthand for "color_split" for norm reasons */
+/* "csp" is just a shorthand for "color_split" for norm reasons */
 static t_bool	check_set_color(t_color *color, char *color_raw)
 {
-	char	**sp;
+	char	**csp;
 
-	sp = ft_split(color_raw, ",");
-	if (sp == NULL)
+	csp = ft_split(color_raw, ",");
+	if (csp == NULL)
 		return (fterr_set_error(E_MALLOC), FALSE);
-	else if (ft_cmatrix_size(sp) != 3 || !ft_str_all(sp[0], ft_isdigit)
-		|| !ft_str_all(sp[1], ft_isdigit) || !ft_str_all(sp[0], ft_isdigit))
+	else if (ft_cmatrix_size(csp) != 3 || !ft_str_all(csp[0], ft_isdigit)
+		|| !ft_str_all(csp[1], ft_isdigit) || !ft_str_all(csp[0], ft_isdigit))
 	{
-		return (ft_cmatrix_free(sp), fterr_set_error(E_META_FORMAT), FALSE);
+		return (ft_cmatrix_free(csp), fterr_set_error(E_META_FORMAT), FALSE);
 	}
-	else if (ft_strlen(sp[0]) > 3 || ft_strlen(sp[1]) > 3
-		|| ft_strlen(sp[2]) > 3 || ft_atoi(sp[0]) > UCHAR_MAX
-		|| ft_atoi(sp[1]) > UCHAR_MAX || ft_atoi(sp[2]) > UCHAR_MAX)
+	else if (ft_strlen(csp[0]) > 3 || ft_strlen(csp[1]) > 3
+		|| ft_strlen(csp[2]) > 3 || ft_atoi(csp[0]) > UCHAR_MAX
+		|| ft_atoi(csp[1]) > UCHAR_MAX || ft_atoi(csp[2]) > UCHAR_MAX)
 	{
-		return (ft_cmatrix_free(sp), fterr_set_error(E_COLOR_INVALID), FALSE);
+		return (ft_cmatrix_free(csp), fterr_set_error(E_COLOR_INVALID), FALSE);
 	}
-	*color = color_build((unsigned char)ft_atoi(sp[0]),
-			(unsigned char)ft_atoi(sp[1]),
-			(unsigned char)ft_atoi(sp[2]),
+	*color = color_build((unsigned char)ft_atoi(csp[0]),
+			(unsigned char)ft_atoi(csp[1]),
+			(unsigned char)ft_atoi(csp[2]),
 			UCHAR_MAX);
-	return (ft_cmatrix_free(sp), TRUE);
+	return (ft_cmatrix_free(csp), TRUE);
 }
 
 static t_bool	check_specific_meta(

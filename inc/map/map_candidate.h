@@ -6,7 +6,7 @@
 /*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/24 21:26:59 by nsierra-          #+#    #+#             */
-/*   Updated: 2022/07/12 01:19:03 by nsierra-         ###   ########.fr       */
+/*   Updated: 2022/07/13 23:36:13 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,9 @@ typedef struct s_map_candidate
 	char	*south_texture;
 	char	*east_texture;
 	char	*west_texture;
+	char	**matrix;
+	int		height;
+	int		width;
 	t_color	floor_color;
 	t_color	ceilling_color;
 	t_bool	floor_color_set;
@@ -41,7 +44,9 @@ typedef struct s_map_candidate
 }	t_map_candidate;
 
 t_bool	map_candidate_parse(t_map_candidate *candidate);
-void	map_candidate_destroy(t_map_candidate *candidate);
 t_bool	map_candidate_is_valid(t_map_candidate *candidate);
+t_bool	map_candidate_build_matrix(t_map_candidate *candidate);
+void	map_candidate_destroy(t_map_candidate *candidate);
+void	map_candidate_debug(t_map_candidate *candidate);
 
 #endif

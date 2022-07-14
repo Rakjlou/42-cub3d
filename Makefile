@@ -6,13 +6,15 @@
 #    By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/10 23:54:46 by nsierra-          #+#    #+#              #
-#    Updated: 2022/07/12 01:38:16 by nsierra-         ###   ########.fr        #
+#    Updated: 2022/07/14 04:07:37 by nsierra-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = cub3d
 
-TESTMAP = estupid.ber
+VALGRIND = valgrind --leak-check=full --track-origins=yes --show-leak-kinds=all --show-reachable=yes
+TESTMAP = 42.cub
+#TESTMAP = fail/fail-wall-13.cub
 
 SRC = src/main.c \
 	src/errors/register.c \
@@ -20,12 +22,16 @@ SRC = src/main.c \
 	src/map/init.c \
 	src/map/parse.c \
 	src/map/destroy.c \
+	src/map/build_matrix.c \
+	src/map/candidate_debug.c \
 	src/map/validation/is_valid.c \
 	src/map/validation/check_emptiness.c \
 	src/map/validation/check_filename.c \
 	src/map/validation/check_map_chars.c \
 	src/map/validation/check_spawn.c \
 	src/map/validation/check_metadata.c \
+	src/map/validation/check_walls.c \
+	src/map/validation/tile_is.c \
 
 OBJ = $(SRC:.c=.o)
 DEPS = $(SRC:.c=.d)
@@ -75,32 +81,42 @@ n:
 	norminette inc src libft
 
 t:
-	valgrind --leak-check=full --track-origins=yes --show-leak-kinds=all --show-reachable=yes \
-	./cub3d map/$(m).ber
+	$(VALGRIND)	./cub3d map/$(m).ber
 
 test: all
-	valgrind --leak-check=full --track-origins=yes --show-leak-kinds=all --show-reachable=yes \
-	./cub3d map/$(TESTMAP)
+	$(VALGRIND)	./cub3d map/$(TESTMAP)
 
 test_failure: all
 	chmod -r map/fail/fail-read-rights.cub && \
-	echo "\033[0;32m.cub file\033[0m" && ./cub3d map/fail/.cub || \
-	echo "\033[0;32mnon existing file\033[0m" && ./cub3d map/fail/idontexist.cub || \
-	echo "\033[0;32mduplicate spawn\033[0m" && ./cub3d map/fail/fail-duplicate-spawn.cub || \
-	echo "\033[0;32mempty map\033[0m" && ./cub3d map/fail/fail-empty.cub || \
-	echo "\033[0;32mwrong extension\033[0m" && ./cub3d map/fail/fail-extension.cu || \
-	echo "\033[0;32mno spawn\033[0m" && ./cub3d map/fail/fail-lacks-spawn.cub || \
-	echo "\033[0;32mno read rights\033[0m" && ./cub3d map/fail/fail-read-rights.cub || \
-	echo "\033[0;32munknown char\033[0m" && ./cub3d map/fail/fail-unknown-char.cub || \
-	echo "\033[0;32mcolor negative\033[0m" && ./cub3d map/fail/fail-color-negative.cub || \
-	echo "\033[0;32mcolor too high\033[0m" && ./cub3d map/fail/fail-color-too-high.cub || \
-	echo "\033[0;32mcolor missing\033[0m" && ./cub3d map/fail/fail-color-missing.cub || \
-	echo "\033[0;32mcolor format (1 block)\033[0m" && ./cub3d map/fail/fail-color-format.cub || \
-	echo "\033[0;32mcolor format (> 2 blocks)\033[0m" && ./cub3d map/fail/fail-color-format-2.cub || \
-	echo "\033[0;32mtexture missing\033[0m" && ./cub3d map/fail/fail-texture-missing.cub || \
-	echo "\033[0;32mtexture format (1 block)\033[0m" && ./cub3d map/fail/fail-texture-format.cub || \
-	echo "\033[0;32mtexture format (> 2 blocks)\033[0m" && ./cub3d map/fail/fail-texture-format-2.cub || \
-	echo "\033[0;32mnot surrounded by walls\033[0m" && ./cub3d map/fail/fail-wall-surround.cub || \
+	echo "\033[0;32m.cub file\033[0m"                   && $(VALGRIND) ./cub3d map/fail/.cub ; \
+	echo "\033[0;32mnon existing file\033[0m"           && $(VALGRIND) ./cub3d map/fail/idontexist.cub ; \
+	echo "\033[0;32mduplicate spawn\033[0m"             && $(VALGRIND) ./cub3d map/fail/fail-duplicate-spawn.cub ; \
+	echo "\033[0;32mempty map\033[0m"                   && $(VALGRIND) ./cub3d map/fail/fail-empty.cub ; \
+	echo "\033[0;32mwrong extension\033[0m"             && $(VALGRIND) ./cub3d map/fail/fail-extension.cu ; \
+	echo "\033[0;32mno spawn\033[0m"                    && $(VALGRIND) ./cub3d map/fail/fail-lacks-spawn.cub ; \
+	echo "\033[0;32mno read rights\033[0m"              && $(VALGRIND) ./cub3d map/fail/fail-read-rights.cub ; \
+	echo "\033[0;32munknown char\033[0m"                && $(VALGRIND) ./cub3d map/fail/fail-unknown-char.cub ; \
+	echo "\033[0;32mcolor negative\033[0m"              && $(VALGRIND) ./cub3d map/fail/fail-color-negative.cub ; \
+	echo "\033[0;32mcolor too high\033[0m"              && $(VALGRIND) ./cub3d map/fail/fail-color-too-high.cub ; \
+	echo "\033[0;32mcolor missing\033[0m"               && $(VALGRIND) ./cub3d map/fail/fail-color-missing.cub ; \
+	echo "\033[0;32mcolor format (1 block)\033[0m"      && $(VALGRIND) ./cub3d map/fail/fail-color-format.cub ; \
+	echo "\033[0;32mcolor format (> 2 blocks)\033[0m"   && $(VALGRIND) ./cub3d map/fail/fail-color-format-2.cub ; \
+	echo "\033[0;32mtexture missing\033[0m"             && $(VALGRIND) ./cub3d map/fail/fail-texture-missing.cub ; \
+	echo "\033[0;32mtexture format (1 block)\033[0m"    && $(VALGRIND) ./cub3d map/fail/fail-texture-format.cub ; \
+	echo "\033[0;32mtexture format (> 2 blocks)\033[0m" && $(VALGRIND) ./cub3d map/fail/fail-texture-format-2.cub ; \
+	echo "\033[0;32mwalls (south limit)\033[0m"         && $(VALGRIND) ./cub3d map/fail/fail-wall.cub ; \
+	echo "\033[0;32mwalls (spawn south limit)\033[0m"   && $(VALGRIND) ./cub3d map/fail/fail-wall-2.cub ; \
+	echo "\033[0;32mwalls (enclosed)\033[0m"            && $(VALGRIND) ./cub3d map/fail/fail-wall-3.cub ; \
+	echo "\033[0;32mwalls (spawn only)\033[0m"          && $(VALGRIND) ./cub3d map/fail/fail-wall-4.cub ; \
+	echo "\033[0;32mwalls (outside south)\033[0m"       && $(VALGRIND) ./cub3d map/fail/fail-wall-5.cub ; \
+	echo "\033[0;32mwalls (outside east)\033[0m"        && $(VALGRIND) ./cub3d map/fail/fail-wall-6.cub ; \
+	echo "\033[0;32mwalls (outside north)\033[0m"       && $(VALGRIND) ./cub3d map/fail/fail-wall-7.cub ; \
+	echo "\033[0;32mwalls (outside west)\033[0m"        && $(VALGRIND) ./cub3d map/fail/fail-wall-8.cub ; \
+	echo "\033[0;32mwalls (east limit)\033[0m"          && $(VALGRIND) ./cub3d map/fail/fail-wall-9.cub ; \
+	echo "\033[0;32mwalls (north limit)\033[0m"         && $(VALGRIND) ./cub3d map/fail/fail-wall-10.cub ; \
+	echo "\033[0;32mwalls (west limit)\033[0m"          && $(VALGRIND) ./cub3d map/fail/fail-wall-11.cub ; \
+	echo "\033[0;32mwalls (space inside)\033[0m"        && $(VALGRIND) ./cub3d map/fail/fail-wall-12.cub ; \
+	echo "\033[0;32mwalls (spawn & space only)\033[0m"  && $(VALGRIND) ./cub3d map/fail/fail-wall-12.cub ; \
 	chmod +r map/fail/fail-read-rights.cub
 
 gdb: all

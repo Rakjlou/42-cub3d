@@ -6,7 +6,7 @@
 /*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/24 21:26:59 by nsierra-          #+#    #+#             */
-/*   Updated: 2022/07/12 00:31:54 by nsierra-         ###   ########.fr       */
+/*   Updated: 2022/07/14 04:10:35 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@
 # define SPAWN_CHARS "NSEW"
 /*# define MAP_CHARS WALL_CHARS FLOOR_CHARS OUTSIDE_CHARS SPAWN_CHARS*/
 # define MAP_CHARS " 10NSEW"
+
+# define FLOOR_VALIDATION 'F'
 
 # define NORTH_ID "NO"
 # define SOUTH_ID "SO"
@@ -40,5 +42,8 @@ t_bool	check_filename(t_map_candidate *candidate);
 t_bool	check_map_chars(t_map_candidate *candidate);
 t_bool	check_spawn(t_map_candidate *candidate);
 t_bool	check_metadata(t_map_candidate *candidate);
+t_bool	check_walls(t_map_candidate *candidate);
+t_bool	tile_is_floor(int tile);
+t_bool	tile_is_outside(int tile);
 
 #endif

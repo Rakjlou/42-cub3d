@@ -6,7 +6,7 @@
 /*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/01 20:32:21 by nsierra-          #+#    #+#             */
-/*   Updated: 2022/07/11 23:05:58 by nsierra-         ###   ########.fr       */
+/*   Updated: 2022/07/14 04:04:06 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,13 @@ static t_bool	preliminary_tests(t_map_candidate *candidate)
 /*
 	We first do the tests requiring no memory allocation.
 	We then build a temporary map array in order to test properly the
-	wall surroundings and "outsideness"
+	wall surroundings
 */
 t_bool	map_candidate_is_valid(t_map_candidate *candidate)
 {
-	if (!preliminary_tests(candidate))
+	if (!preliminary_tests(candidate)
+		|| !map_candidate_build_matrix(candidate)
+		|| !check_walls(candidate))
 		return (FALSE);
 	return (TRUE);
 }
