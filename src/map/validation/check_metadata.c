@@ -6,7 +6,7 @@
 /*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/25 20:07:37 by nsierra-          #+#    #+#             */
-/*   Updated: 2022/07/18 22:38:35 by nsierra-         ###   ########.fr       */
+/*   Updated: 2022/07/18 22:45:50 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,23 +28,24 @@ static t_bool	set_texture(char **texture, char *texture_raw)
 
 static t_bool	check_set_color(t_color *color, char *color_raw)
 {
-	char	**csp;
+	char	**color_split;
 	char	*component;
 	int		i;
 
 	i = 0;
-	csp = ft_split(color_raw, ",");
-	if (!check_color_integrity(csp))
+	color_split = ft_split(color_raw, ",");
+	if (!check_color_integrity(color_split))
 		return (FALSE);
 	while (i < COLOR_COMPONENTS)
 	{
-		component = csp[i];
-		if (!check_color_component_integrity(csp, component))
+		component = color_split[i];
+		if (!check_color_component_integrity(color_split, component))
 			return (FALSE);
 		++i;
 	}
-	*color = color_build_str(csp[0], csp[1], csp[2], "-1");
-	return (ft_cmatrix_free(csp), TRUE);
+	*color = color_build_str(color_split[0], color_split[1],
+			color_split[2], "-1");
+	return (ft_cmatrix_free(color_split), TRUE);
 }
 
 static t_bool	check_specific_meta(

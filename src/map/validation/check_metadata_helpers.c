@@ -6,7 +6,7 @@
 /*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/25 20:07:37 by nsierra-          #+#    #+#             */
-/*   Updated: 2022/07/18 22:41:14 by nsierra-         ###   ########.fr       */
+/*   Updated: 2022/07/18 22:47:06 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ t_bool	check_metadata_missing(t_map_candidate *candidate)
 t_bool	check_metadata_line_integrity(char **line_split)
 {
 	if (line_split == NULL)
-		return (fterr_set_error(E_MALLOC), FALSE);
+		return (check_metadata_error(NULL, E_MALLOC));
 	else if (ft_cmatrix_size(line_split) != META_ELEM_SIZE)
 		return (check_metadata_error(NULL, E_META_FORMAT));
 	return (TRUE);

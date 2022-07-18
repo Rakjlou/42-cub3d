@@ -6,7 +6,7 @@
 #    By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/10 23:54:46 by nsierra-          #+#    #+#              #
-#    Updated: 2022/07/18 22:28:49 by nsierra-         ###   ########.fr        #
+#    Updated: 2022/07/18 22:52:52 by nsierra-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -101,7 +101,7 @@ test_failure: all
 	echo "\033[0;32munknown char\033[0m"                && $(VALGRIND) ./cub3d map/fail/fail-unknown-char.cub ; \
 	echo "\033[0;32mcolor negative\033[0m"              && $(VALGRIND) ./cub3d map/fail/fail-color-negative.cub ; \
 	echo "\033[0;32mcolor too high\033[0m"              && $(VALGRIND) ./cub3d map/fail/fail-color-too-high.cub ; \
-	echo "\033[0;32mmeta missing\033[0m"                && $(VALGRIND) ./cub3d map/fail/fail-meta-missing.cub ; \
+	echo "\033[0;32mcolor missing\033[0m"               && $(VALGRIND) ./cub3d map/fail/fail-color-missing.cub ; \
 	echo "\033[0;32mcolor format (1 block)\033[0m"      && $(VALGRIND) ./cub3d map/fail/fail-color-format.cub ; \
 	echo "\033[0;32mcolor format (> 2 blocks)\033[0m"   && $(VALGRIND) ./cub3d map/fail/fail-color-format-2.cub ; \
 	echo "\033[0;32mtexture missing\033[0m"             && $(VALGRIND) ./cub3d map/fail/fail-texture-missing.cub ; \
