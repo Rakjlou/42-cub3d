@@ -6,7 +6,7 @@
 /*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/25 20:07:37 by nsierra-          #+#    #+#             */
-/*   Updated: 2022/07/18 22:45:50 by nsierra-         ###   ########.fr       */
+/*   Updated: 2022/07/19 01:12:21 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,8 +68,8 @@ static t_bool	check_specific_meta(
 	}
 	else if (meta == META_CEILING)
 	{
-		candidate->ceilling_color_set = TRUE;
-		return (check_set_color(&candidate->ceilling_color, meta_value));
+		candidate->ceiling_color_set = TRUE;
+		return (check_set_color(&candidate->ceiling_color, meta_value));
 	}
 	return (FALSE);
 }

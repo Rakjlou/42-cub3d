@@ -6,7 +6,7 @@
 /*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/25 20:07:37 by nsierra-          #+#    #+#             */
-/*   Updated: 2022/07/18 22:47:06 by nsierra-         ###   ########.fr       */
+/*   Updated: 2022/07/19 01:12:20 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ t_bool	check_metadata_missing(t_map_candidate *candidate)
 		return (check_metadata_error_printf(NULL, E_META_MISSING, WEST_ID));
 	else if (!candidate->floor_color_set)
 		return (check_metadata_error_printf(NULL, E_META_MISSING, FLOOR_ID));
-	else if (!candidate->ceilling_color_set)
+	else if (!candidate->ceiling_color_set)
 		return (check_metadata_error_printf(NULL, E_META_MISSING, CEILING_ID));
 	return (TRUE);
 }

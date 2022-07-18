@@ -6,7 +6,7 @@
 /*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/01 14:53:03 by nsierra-          #+#    #+#             */
-/*   Updated: 2022/07/14 01:00:27 by nsierra-         ###   ########.fr       */
+/*   Updated: 2022/07/19 01:12:22 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ void	map_candidate_debug(t_map_candidate *candidate)
 	ftprintf("EA:       %s\n", candidate->east_texture);
 	ftprintf("WE:       %s\n", candidate->west_texture);
 	ftprintf("F:        %X\n", candidate->floor_color);
-	ftprintf("C:        %X\n", candidate->ceilling_color);
+	ftprintf("C:        %X\n", candidate->ceiling_color);
 	print_raw_lines(candidate);
 	print_raw_meta(candidate);
 	print_raw_map(candidate);

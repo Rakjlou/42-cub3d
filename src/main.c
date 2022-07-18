@@ -6,7 +6,7 @@
 /*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/18 15:50:19 by nsierra-          #+#    #+#             */
-/*   Updated: 2022/07/01 16:03:47 by nsierra-         ###   ########.fr       */
+/*   Updated: 2022/07/19 00:17:01 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,11 @@
 
 static t_bool	init(int ac, char **av)
 {
-	(void)av;
+	t_map	map;
+
 	if (ac < 2 || ac > 2)
 		return (fterr_set_error(E_USAGE), FALSE);
-	else if (!map_init(av[1]))
+	else if (!map_init(av[1], &map))
 		return (FALSE);
 	return (TRUE);
 }

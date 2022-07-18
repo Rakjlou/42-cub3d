@@ -6,7 +6,7 @@
 /*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/24 21:26:59 by nsierra-          #+#    #+#             */
-/*   Updated: 2022/07/13 23:36:13 by nsierra-         ###   ########.fr       */
+/*   Updated: 2022/07/19 01:12:22 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,9 +35,9 @@ typedef struct s_map_candidate
 	int		height;
 	int		width;
 	t_color	floor_color;
-	t_color	ceilling_color;
+	t_color	ceiling_color;
 	t_bool	floor_color_set;
-	t_bool	ceilling_color_set;
+	t_bool	ceiling_color_set;
 	t_lst	lines;
 	t_lst	map;
 	t_lst	meta;

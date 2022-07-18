@@ -6,7 +6,7 @@
 /*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/13 22:30:23 by nsierra-          #+#    #+#             */
-/*   Updated: 2022/07/14 03:06:31 by nsierra-         ###   ########.fr       */
+/*   Updated: 2022/07/19 00:53:24 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,8 @@ static t_bool	hydrate_raw_matrix(t_map_candidate *candidate)
 	i = 0;
 	height = (size_t)candidate->height;
 	width = (size_t)candidate->width;
+	if (candidate->matrix != NULL)
+		(ft_cmatrix_free(candidate->matrix), candidate->matrix = NULL);
 	candidate->matrix = ft_calloc(height + 1, sizeof(char **));
 	if (candidate->matrix == NULL)
 		return (fterr_set_error(E_MALLOC), FALSE);

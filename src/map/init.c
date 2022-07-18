@@ -6,7 +6,7 @@
 /*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/01 14:53:03 by nsierra-          #+#    #+#             */
-/*   Updated: 2022/07/12 01:37:14 by nsierra-         ###   ########.fr       */
+/*   Updated: 2022/07/19 01:18:40 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,26 +33,74 @@ static t_bool	line_callback(const char *line, void *data)
 	return (TRUE);
 }
 
-t_map	*map_init(char *filename)
+static t_bool	generate_map(t_map_candidate *candidate, t_map *map)
+{
+	int	line;
+	int	column;
+
+	line = 0;
+	column = 0;
+	map->data = ft_calloc(map->height, sizeof(t_tile *));
+	if (map->data == NULL)
+		return (fterr_set_error(E_MALLOC), FALSE);
+	while (line < map->height)
+	{
+		map->data[line] = ft_calloc(map->width, sizeof(t_tile));
+		if (map->data[line] == NULL)
+			return (fterr_set_error(E_MALLOC), FALSE);
+		column = 0;
+		while (column < map->width)
+		{
+			map->data[line][column].type = candidate->matrix[line][column];
+			++column;
+		}
+		++line;
+	}
+	map_debug(map);
+	return (TRUE);
+}
+
+static t_bool	map_from_candidate(t_map_candidate *candidate, t_map *map)
+{
+	map->height = candidate->height;
+	map->width = candidate->width;
+	map->filename = candidate->filename;
+	map->color_ceiling = candidate->ceiling_color;
+	map->color_floor = candidate->floor_color;
+	map->texture_north.filename = ft_strdup(candidate->north_texture);
+	map->texture_south.filename = ft_strdup(candidate->south_texture);
+	map->texture_east.filename = ft_strdup(candidate->east_texture);
+	map->texture_west.filename = ft_strdup(candidate->west_texture);
+	if (!map->texture_north.filename || !map->texture_south.filename
+		|| !map->texture_east.filename || !map->texture_west.filename)
+		return (fterr_set_error(E_MALLOC), FALSE);
+	else if (!map_candidate_build_matrix(candidate))
+		return (FALSE);
+	return (generate_map(candidate, map));
+}
+
+t_bool	map_init(char *filename, t_map *map)
 {
 	t_map_candidate	candidate;
 	t_readf_status	status;
 
 	ft_bzero(&candidate, sizeof(t_map_candidate));
+	ft_bzero(map, sizeof(t_map));
 	candidate.filename = filename;
 	status = readf(filename, line_callback, &candidate);
 	if (status == FTRF_E_READL)
-		return (NULL);
+		return (FALSE);
 	else if (status == FTRF_E_FILE_OPEN)
 		return (
 			map_candidate_destroy(&candidate),
 			fterr_set(E_MAP_OPEN, (void *)filename, NULL),
-			NULL
+			FALSE
 		);
 	else if (&candidate.lines.size == 0)
-		return (fterr_set(E_MAP_EMPTY, candidate.filename, NULL), NULL);
+		return (fterr_set(E_MAP_EMPTY, candidate.filename, NULL), FALSE);
 	else if (!map_candidate_parse(&candidate)
 		|| !map_candidate_is_valid(&candidate))
-		return (map_candidate_destroy(&candidate), NULL);
-	return (map_candidate_destroy(&candidate), NULL);
+		return (map_candidate_destroy(&candidate), FALSE);
+	return (map_from_candidate(&candidate, map),
+		map_candidate_destroy(&candidate), map_destroy(map), FALSE);
 }

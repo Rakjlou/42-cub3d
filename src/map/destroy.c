@@ -6,12 +6,24 @@
 /*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/01 14:53:03 by nsierra-          #+#    #+#             */
-/*   Updated: 2022/07/13 23:30:18 by nsierra-         ###   ########.fr       */
+/*   Updated: 2022/07/19 01:18:51 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 #include "map/map_candidate.h"
+#include "map/map.h"
+
+static void	destroy_map_data(t_map *map)
+{
+	int	line;
+
+	line = 0;
+	while (line < map->height)
+		free(map->data[line++]);
+	free(map->data);
+	map->data = NULL;
+}
 
 void	map_candidate_destroy(t_map_candidate *candidate)
 {
@@ -24,4 +36,13 @@ void	map_candidate_destroy(t_map_candidate *candidate)
 	free(candidate->west_texture);
 	if (candidate->matrix != NULL)
 		ft_cmatrix_free(candidate->matrix);
+}
+
+void	map_destroy(t_map *map)
+{
+	free(map->texture_north.filename);
+	free(map->texture_south.filename);
+	free(map->texture_east.filename);
+	free(map->texture_west.filename);
+	destroy_map_data(map);
 }

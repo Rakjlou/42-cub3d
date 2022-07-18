@@ -6,7 +6,7 @@
 #    By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/10 23:54:46 by nsierra-          #+#    #+#              #
-#    Updated: 2022/07/18 22:52:52 by nsierra-         ###   ########.fr        #
+#    Updated: 2022/07/19 01:06:11 by nsierra-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,6 +24,7 @@ SRC = src/main.c \
 	src/map/parse.c \
 	src/map/destroy.c \
 	src/map/build_matrix.c \
+	src/map/debug.c \
 	src/map/candidate_debug.c \
 	src/map/validation/is_valid.c \
 	src/map/validation/check_emptiness.c \
