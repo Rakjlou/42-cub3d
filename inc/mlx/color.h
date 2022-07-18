@@ -6,7 +6,7 @@
 /*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/01 14:55:44 by nsierra-          #+#    #+#             */
-/*   Updated: 2022/07/12 00:40:10 by nsierra-         ###   ########.fr       */
+/*   Updated: 2022/07/18 21:32:12 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,5 +28,11 @@ t_color	color_build(
 			unsigned char green,
 			unsigned char blue,
 			unsigned char alpha);
+
+t_color	color_build_str(
+			char *red,
+			char *green,
+			char *blue,
+			char *alpha);
 
 #endif

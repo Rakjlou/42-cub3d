@@ -6,13 +6,14 @@
 #    By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/10 23:54:46 by nsierra-          #+#    #+#              #
-#    Updated: 2022/07/14 04:07:37 by nsierra-         ###   ########.fr        #
+#    Updated: 2022/07/18 22:28:49 by nsierra-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = cub3d
 
 VALGRIND = valgrind --leak-check=full --track-origins=yes --show-leak-kinds=all --show-reachable=yes
+#VALGRIND =
 TESTMAP = 42.cub
 #TESTMAP = fail/fail-wall-13.cub
 
@@ -30,6 +31,8 @@ SRC = src/main.c \
 	src/map/validation/check_map_chars.c \
 	src/map/validation/check_spawn.c \
 	src/map/validation/check_metadata.c \
+	src/map/validation/check_metadata_errors.c \
+	src/map/validation/check_metadata_helpers.c \
 	src/map/validation/check_walls.c \
 	src/map/validation/tile_is.c \
 
@@ -98,7 +101,7 @@ test_failure: all
 	echo "\033[0;32munknown char\033[0m"                && $(VALGRIND) ./cub3d map/fail/fail-unknown-char.cub ; \
 	echo "\033[0;32mcolor negative\033[0m"              && $(VALGRIND) ./cub3d map/fail/fail-color-negative.cub ; \
 	echo "\033[0;32mcolor too high\033[0m"              && $(VALGRIND) ./cub3d map/fail/fail-color-too-high.cub ; \
-	echo "\033[0;32mcolor missing\033[0m"               && $(VALGRIND) ./cub3d map/fail/fail-color-missing.cub ; \
+	echo "\033[0;32mmeta missing\033[0m"                && $(VALGRIND) ./cub3d map/fail/fail-meta-missing.cub ; \
 	echo "\033[0;32mcolor format (1 block)\033[0m"      && $(VALGRIND) ./cub3d map/fail/fail-color-format.cub ; \
 	echo "\033[0;32mcolor format (> 2 blocks)\033[0m"   && $(VALGRIND) ./cub3d map/fail/fail-color-format-2.cub ; \
 	echo "\033[0;32mtexture missing\033[0m"             && $(VALGRIND) ./cub3d map/fail/fail-texture-missing.cub ; \

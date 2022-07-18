@@ -6,7 +6,7 @@
 /*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/01 15:24:29 by nsierra-          #+#    #+#             */
-/*   Updated: 2022/07/14 04:10:13 by nsierra-         ###   ########.fr       */
+/*   Updated: 2022/07/18 22:08:13 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,9 +34,10 @@ t_bool	errors_register(void)
 		|| !er(E_MAP_SPAWN_MISS, E_MAP_SPAWN_MISS_MSG, NULL)
 		|| !er(E_MAP_SPAWN_EXTRA, E_MAP_SPAWN_EXTRA_MSG, NULL)
 		|| !er(E_META_FORMAT, E_META_FORMAT_MSG, NULL)
-		|| !er(E_COLOR_INVALID, E_COLOR_INVALID_MSG, NULL)
-		|| !er(E_META_MISSING, E_META_MISSING_MSG, NULL)
 		|| !er(E_MAP_HOLE, E_MAP_HOLE_MSG, NULL)
+		|| !er(E_META_MISSING, E_META_MISSING_MSG, fterr_default_printf)
+		|| !er(E_COLOR_DEF, E_COLOR_DEF_MSG, fterr_default_printf)
+		|| !er(E_COLOR_VAL, E_COLOR_VAL_MSG, fterr_default_printf)
 		|| !er(E_MAP_EXT, E_MAP_EXT_MSG, fterr_default_printf)
 		|| !er(E_MAP_EXT2, E_MAP_EXT2_MSG, fterr_default_printf)
 		|| !er(E_META_INVALID, E_META_INVALID_MSG, fterr_default_printf)

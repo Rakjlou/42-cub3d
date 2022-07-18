@@ -6,7 +6,7 @@
 /*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/25 20:07:37 by nsierra-          #+#    #+#             */
-/*   Updated: 2022/07/14 01:54:11 by nsierra-         ###   ########.fr       */
+/*   Updated: 2022/07/18 22:38:35 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,85 +19,85 @@ static t_bool	set_texture(char **texture, char *texture_raw)
 
 	raw_dup = ft_strdup(texture_raw);
 	if (raw_dup == NULL)
-		return (fterr_set_error(E_MALLOC), FALSE);
+		return (check_metadata_error(NULL, E_MALLOC));
 	if (texture && *texture != NULL)
 		free(*texture);
 	*texture = raw_dup;
 	return (TRUE);
 }
 
-/* "csp" is just a shorthand for "color_split" for norm reasons */
 static t_bool	check_set_color(t_color *color, char *color_raw)
 {
 	char	**csp;
+	char	*component;
+	int		i;
 
+	i = 0;
 	csp = ft_split(color_raw, ",");
-	if (csp == NULL)
-		return (fterr_set_error(E_MALLOC), FALSE);
-	else if (ft_cmatrix_size(csp) != 3 || !ft_str_all(csp[0], ft_isdigit)
-		|| !ft_str_all(csp[1], ft_isdigit) || !ft_str_all(csp[0], ft_isdigit))
+	if (!check_color_integrity(csp))
+		return (FALSE);
+	while (i < COLOR_COMPONENTS)
 	{
-		return (ft_cmatrix_free(csp), fterr_set_error(E_META_FORMAT), FALSE);
+		component = csp[i];
+		if (!check_color_component_integrity(csp, component))
+			return (FALSE);
+		++i;
 	}
-	else if (ft_strlen(csp[0]) > 3 || ft_strlen(csp[1]) > 3
-		|| ft_strlen(csp[2]) > 3 || ft_atoi(csp[0]) > UCHAR_MAX
-		|| ft_atoi(csp[1]) > UCHAR_MAX || ft_atoi(csp[2]) > UCHAR_MAX)
-	{
-		return (ft_cmatrix_free(csp), fterr_set_error(E_COLOR_INVALID), FALSE);
-	}
-	*color = color_build((unsigned char)ft_atoi(csp[0]),
-			(unsigned char)ft_atoi(csp[1]),
-			(unsigned char)ft_atoi(csp[2]),
-			UCHAR_MAX);
+	*color = color_build_str(csp[0], csp[1], csp[2], "-1");
 	return (ft_cmatrix_free(csp), TRUE);
 }
 
 static t_bool	check_specific_meta(
 	t_map_candidate *candidate,
-	char **meta,
-	int meta_identifier)
+	char *meta_value,
+	int meta)
 {
-	if (meta_identifier == 0)
-		return (set_texture(&candidate->north_texture, meta[1]));
-	else if (meta_identifier == 1)
-		return (set_texture(&candidate->south_texture, meta[1]));
-	else if (meta_identifier == 2)
-		return (set_texture(&candidate->east_texture, meta[1]));
-	else if (meta_identifier == 3)
-		return (set_texture(&candidate->west_texture, meta[1]));
-	else if (meta_identifier == 4)
+	if (meta == META_NORTH)
+		return (set_texture(&candidate->north_texture, meta_value));
+	else if (meta == META_SOUTH)
+		return (set_texture(&candidate->south_texture, meta_value));
+	else if (meta == META_EAST)
+		return (set_texture(&candidate->east_texture, meta_value));
+	else if (meta == META_WEST)
+		return (set_texture(&candidate->west_texture, meta_value));
+	else if (meta == META_FLOOR)
 	{
 		candidate->floor_color_set = TRUE;
-		return (check_set_color(&candidate->floor_color, meta[1]));
+		return (check_set_color(&candidate->floor_color, meta_value));
 	}
-	else if (meta_identifier == 5)
+	else if (meta == META_CEILING)
 	{
 		candidate->ceilling_color_set = TRUE;
-		return (check_set_color(&candidate->ceilling_color, meta[1]));
+		return (check_set_color(&candidate->ceilling_color, meta_value));
 	}
 	return (FALSE);
 }
 
 static t_bool	check_meta_line(t_map_candidate *candidate, char **meta)
 {
-	static char	*element_candidate[META_ELEM_COUNT] = {
-		NORTH_ID,
-		SOUTH_ID,
-		EAST_ID,
-		WEST_ID,
-		FLOOR_ID,
-		CEILLING_ID
-	};
-	int			i;
+	int		i;
+	char	*meta_id;
+	char	*meta_value;
+	char	*meta_candidate[META_END];
 
+	if (!check_metadata_line_integrity(meta))
+		return (FALSE);
 	i = 0;
-	while (i < META_ELEM_COUNT)
+	meta_id = meta[0];
+	meta_value = meta[1];
+	meta_candidate[META_NORTH] = NORTH_ID;
+	meta_candidate[META_SOUTH] = SOUTH_ID;
+	meta_candidate[META_EAST] = EAST_ID;
+	meta_candidate[META_WEST] = WEST_ID;
+	meta_candidate[META_FLOOR] = FLOOR_ID;
+	meta_candidate[META_CEILING] = CEILING_ID;
+	while (i < META_END)
 	{
-		if (!ft_strncmp(element_candidate[i], meta[0], -1))
-			return (check_specific_meta(candidate, meta, i));
+		if (!ft_strncmp(meta_candidate[i], meta_id, -1))
+			return (check_specific_meta(candidate, meta_value, i));
 		++i;
 	}
-	return (fterr_set(E_META_INVALID, ft_strdup(meta[0]), free), FALSE);
+	return (check_metadata_error_printf(meta, E_META_INVALID, meta_id));
 }
 
 t_bool	check_metadata(t_map_candidate *candidate)
@@ -109,22 +109,9 @@ t_bool	check_metadata(t_map_candidate *candidate)
 	while (iter_next(&iter))
 	{
 		line_split = ft_split((char *)iter.data, " \t\v\n\f\r");
-		if (line_split == NULL)
-			return (fterr_set_error(E_MALLOC), FALSE);
-		else if (ft_cmatrix_size(line_split) != META_ELEM_SIZE)
-		{
-			return (ft_cmatrix_free(line_split),
-				fterr_set_error(E_META_FORMAT), FALSE);
-		}
-		else if (!check_meta_line(candidate, line_split))
+		if (!check_meta_line(candidate, line_split))
 			return (ft_cmatrix_free(line_split), FALSE);
 		ft_cmatrix_free(line_split);
 	}
-	if (!candidate->north_texture || !candidate->south_texture
-		|| !candidate->east_texture || !candidate->west_texture
-		|| !candidate->floor_color_set || !candidate->ceilling_color_set)
-	{
-		return (fterr_set_error(E_META_MISSING), FALSE);
-	}
-	return (TRUE);
+	return (check_metadata_missing(candidate));
 }
