@@ -6,7 +6,7 @@
 /*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/01 14:53:03 by nsierra-          #+#    #+#             */
-/*   Updated: 2022/07/19 01:18:40 by nsierra-         ###   ########.fr       */
+/*   Updated: 2022/07/21 00:03:11 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,12 +56,14 @@ static t_bool	generate_map(t_map_candidate *candidate, t_map *map)
 		}
 		++line;
 	}
-	map_debug(map);
 	return (TRUE);
 }
 
-static t_bool	map_from_candidate(t_map_candidate *candidate, t_map *map)
+static t_bool	map_from_candidate(t_map_candidate *candidate)
 {
+	t_map	*map;
+
+	map = _map();
 	map->height = candidate->height;
 	map->width = candidate->width;
 	map->filename = candidate->filename;
@@ -79,13 +81,12 @@ static t_bool	map_from_candidate(t_map_candidate *candidate, t_map *map)
 	return (generate_map(candidate, map));
 }
 
-t_bool	map_init(char *filename, t_map *map)
+t_bool	map_init(char *filename)
 {
 	t_map_candidate	candidate;
 	t_readf_status	status;
 
 	ft_bzero(&candidate, sizeof(t_map_candidate));
-	ft_bzero(map, sizeof(t_map));
 	candidate.filename = filename;
 	status = readf(filename, line_callback, &candidate);
 	if (status == FTRF_E_READL)
@@ -99,8 +100,8 @@ t_bool	map_init(char *filename, t_map *map)
 	else if (&candidate.lines.size == 0)
 		return (fterr_set(E_MAP_EMPTY, candidate.filename, NULL), FALSE);
 	else if (!map_candidate_parse(&candidate)
-		|| !map_candidate_is_valid(&candidate))
+		|| !map_candidate_is_valid(&candidate)
+		|| !map_from_candidate(&candidate))
 		return (map_candidate_destroy(&candidate), FALSE);
-	return (map_from_candidate(&candidate, map),
-		map_candidate_destroy(&candidate), map_destroy(map), FALSE);
+	return (map_candidate_destroy(&candidate), TRUE);
 }

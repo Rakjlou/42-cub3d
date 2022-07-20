@@ -6,7 +6,7 @@
 /*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/01 14:55:44 by nsierra-          #+#    #+#             */
-/*   Updated: 2022/07/18 22:18:13 by nsierra-         ###   ########.fr       */
+/*   Updated: 2022/07/20 23:56:13 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@
 # define E_COLOR_VAL_MSG "color component '%s' value must be between 0 and 255"
 # define E_MAP_HOLE_MSG "map error: the floor is not surrounded by walls"
 # define E_META_MISSING_MSG "metadata %s missing"
+# define E_MLX_FAILURE_MSG "mlx failed, what a surprise"
 
 typedef enum e_error_code
 {
@@ -48,7 +49,8 @@ typedef enum e_error_code
 	E_COLOR_DEF,
 	E_COLOR_VAL,
 	E_META_MISSING,
-	E_MAP_HOLE
+	E_MAP_HOLE,
+	E_MLX_FAILURE
 }	t_error_code;
 
 t_bool	errors_register(void);

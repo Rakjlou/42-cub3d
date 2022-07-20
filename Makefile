@@ -6,7 +6,7 @@
 #    By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/10 23:54:46 by nsierra-          #+#    #+#              #
-#    Updated: 2022/07/19 01:06:11 by nsierra-         ###   ########.fr        #
+#    Updated: 2022/07/21 00:06:08 by nsierra-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,12 @@ TESTMAP = 42.cub
 
 SRC = src/main.c \
 	src/errors/register.c \
-	src/mlx/color.c \
+	src/game/singleton.c \
+	src/game/init.c \
+	src/game/destroy.c \
+	src/render/color.c \
+	src/render/window/init.c \
+	src/render/window/destroy.c \
 	src/map/init.c \
 	src/map/parse.c \
 	src/map/destroy.c \

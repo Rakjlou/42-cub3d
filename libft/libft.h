@@ -6,7 +6,7 @@
 /*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/22 12:48:31 by nsierra-          #+#    #+#             */
-/*   Updated: 2022/07/11 22:49:03 by nsierra-         ###   ########.fr       */
+/*   Updated: 2022/07/20 22:11:33 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,18 +21,6 @@ typedef struct s_list
 	void			*content;
 	struct s_list	*next;
 }	t_list;
-
-typedef struct s_vector
-{
-	int	x;
-	int	y;
-}	t_vector;
-
-typedef struct s_uvector
-{
-	unsigned int	x;
-	unsigned int	y;
-}	t_uvector;
 
 /* C type */
 int				ft_isalpha(int c);

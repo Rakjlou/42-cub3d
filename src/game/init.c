@@ -1,16 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d.h                                            :+:      :+:    :+:   */
+/*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/24 21:26:59 by nsierra-          #+#    #+#             */
-/*   Updated: 2022/07/01 16:03:19 by nsierra-         ###   ########.fr       */
+/*   Created: 2022/01/18 15:50:19 by nsierra-          #+#    #+#             */
+/*   Updated: 2022/07/20 23:40:57 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CUB3D_H
-# define CUB3D_H
+#include <stdlib.h>
+#include <stdio.h>
+#include "errors.h"
+#include "game.h"
 
-#endif
+t_bool	game_init(char *mapfile)
+{
+	return (map_init(mapfile) && window_init());
+}

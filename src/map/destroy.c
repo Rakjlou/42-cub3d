@@ -6,7 +6,7 @@
 /*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/01 14:53:03 by nsierra-          #+#    #+#             */
-/*   Updated: 2022/07/19 01:18:51 by nsierra-         ###   ########.fr       */
+/*   Updated: 2022/07/20 22:21:57 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,11 @@ void	map_candidate_destroy(t_map_candidate *candidate)
 		ft_cmatrix_free(candidate->matrix);
 }
 
-void	map_destroy(t_map *map)
+void	map_destroy(void)
 {
+	t_map	*map;
+
+	map = _map();
 	free(map->texture_north.filename);
 	free(map->texture_south.filename);
 	free(map->texture_east.filename);

@@ -6,7 +6,7 @@
 /*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/24 21:26:59 by nsierra-          #+#    #+#             */
-/*   Updated: 2022/07/19 01:12:22 by nsierra-         ###   ########.fr       */
+/*   Updated: 2022/07/20 22:03:42 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 # define MAP_TRIM " \t\n\r\v\f"
 
 # include "ftlst.h"
-# include "mlx/color.h"
+# include "render/color.h"
 
 typedef enum e_parse_mode
 {

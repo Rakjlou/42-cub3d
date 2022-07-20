@@ -1,30 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/18 15:50:19 by nsierra-          #+#    #+#             */
-/*   Updated: 2022/07/21 00:27:06 by nsierra-         ###   ########.fr       */
+/*   Created: 2022/07/01 14:53:03 by nsierra-          #+#    #+#             */
+/*   Updated: 2022/07/21 00:17:45 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
-#include <stdio.h>
 #include "errors.h"
-#include "game.h"
+#include "render/window.h"
+#include "mlx.h"
 
-int	main(int ac, char **av)
+t_bool	window_init(void)
 {
-	if (!errors_register())
-		return (perror("cub3d"), EXIT_FAILURE);
-	else if (ac < 2 || ac > 2)
-		return (fterr_set_error(E_USAGE), FALSE);
-	else if (!game_init(av[1]))
-		return (fterr_print(), fterr_destroy(), game_destroy(), EXIT_FAILURE);
-	ft_putendl_fd("BONJOUR MONDE", 2);
-	fterr_destroy();
-	game_destroy();
-	return (0);
+	t_window	*window;
+
+	window = _window();
+	window->mlx = mlx_init();
+	if (window->mlx == NULL)
+		return (fterr_set_error(E_MLX_FAILURE), FALSE);
+	window->core = mlx_new_window(
+			window->mlx,
+			WINDOW_HEIGHT, WINDOW_WIDTH, WINDOW_TITLE);
+	if (window->core == NULL)
+		return (fterr_set_error(E_MLX_FAILURE), FALSE);
+	return (TRUE);
 }

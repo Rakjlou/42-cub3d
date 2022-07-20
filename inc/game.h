@@ -1,51 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   map.h                                              :+:      :+:    :+:   */
+/*   game.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/24 21:26:59 by nsierra-          #+#    #+#             */
-/*   Updated: 2022/07/20 22:18:47 by nsierra-         ###   ########.fr       */
+/*   Updated: 2022/07/20 23:40:41 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MAP_H
-# define MAP_H
+#ifndef GAME_H
+# define GAME_H
 
+# include "map/map.h"
+# include "render/window.h"
 # include "libft.h"
-# include "render/color.h"
 
-typedef struct s_texture
+typedef struct s_game
 {
-	char	*filename;
-}	t_texture;
+	t_map		map;
+	t_window	window;
+}	t_game;
 
-typedef struct s_tile
-{
-	unsigned char	type;
-	int				x;
-	int				y;
-}	t_tile;
+t_game	*_game(void);
 
-typedef struct s_map
-{
-	int			height;
-	int			width;
-	char		*filename;
-	t_texture	texture_north;
-	t_texture	texture_south;
-	t_texture	texture_east;
-	t_texture	texture_west;
-	t_color		color_floor;
-	t_color		color_ceiling;
-	t_tile		**data;
-}	t_map;
-
-t_map	*_map(void);
-
-t_bool	map_init(char *filename);
-void	map_debug(void);
-void	map_destroy(void);
+t_bool	game_init(char *mapfile);
+void	game_destroy(void);
 
 #endif

@@ -6,11 +6,11 @@
 /*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/01 14:53:03 by nsierra-          #+#    #+#             */
-/*   Updated: 2022/07/18 21:36:09 by nsierra-         ###   ########.fr       */
+/*   Updated: 2022/07/20 22:03:41 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "mlx/color.h"
+#include "render/color.h"
 #include "ftprintf.h"
 
 t_color	color_build(

@@ -6,7 +6,7 @@
 /*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/01 14:53:03 by nsierra-          #+#    #+#             */
-/*   Updated: 2022/07/19 01:05:19 by nsierra-         ###   ########.fr       */
+/*   Updated: 2022/07/20 22:21:25 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,11 @@ static void	print_data(t_map *map)
 	}
 }
 
-void	map_debug(t_map *map)
+void	map_debug(void)
 {
+	t_map	*map;
+
+	map = _map();
 	ftprintf("vvv MAP DEBUG vvv\n");
 	ftprintf("Filename: %s\n", map->filename);
 	ftprintf("Height:   %d\n", map->height);
