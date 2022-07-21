@@ -6,7 +6,7 @@
 /*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/26 22:34:35 by nsierra-          #+#    #+#             */
-/*   Updated: 2022/07/21 21:54:36 by nsierra-         ###   ########.fr       */
+/*   Updated: 2022/07/21 22:16:22 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,4 +39,9 @@ t_window	*_window(void)
 t_player	*_player(void)
 {
 	return (&_game()->player);
+}
+
+t_input	*_input(void)
+{
+	return (&_game()->input);
 }
