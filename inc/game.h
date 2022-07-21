@@ -6,7 +6,7 @@
 /*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/24 21:26:59 by nsierra-          #+#    #+#             */
-/*   Updated: 2022/07/20 23:40:41 by nsierra-         ###   ########.fr       */
+/*   Updated: 2022/07/21 20:24:10 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,5 +27,6 @@ t_game	*_game(void);
 
 t_bool	game_init(char *mapfile);
 void	game_destroy(void);
+void	game_loop(void);
 
 #endif

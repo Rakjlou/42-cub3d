@@ -6,7 +6,7 @@
 #    By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/10 23:54:46 by nsierra-          #+#    #+#              #
-#    Updated: 2022/07/21 00:06:08 by nsierra-         ###   ########.fr        #
+#    Updated: 2022/07/21 20:27:50 by nsierra-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME = cub3d
 
 VALGRIND = valgrind --leak-check=full --track-origins=yes --show-leak-kinds=all --show-reachable=yes
 #VALGRIND =
-TESTMAP = 42.cub
+TESTMAP = test.cub
 #TESTMAP = fail/fail-wall-13.cub
 
 SRC = src/main.c \
@@ -22,9 +22,12 @@ SRC = src/main.c \
 	src/game/singleton.c \
 	src/game/init.c \
 	src/game/destroy.c \
+	src/game/loop.c \
 	src/render/color.c \
 	src/render/window/init.c \
 	src/render/window/destroy.c \
+	src/render/window/set_callback.c \
+	src/render/texture.c \
 	src/map/init.c \
 	src/map/parse.c \
 	src/map/destroy.c \
@@ -113,6 +116,8 @@ test_failure: all
 	echo "\033[0;32mtexture missing\033[0m"             && $(VALGRIND) ./cub3d map/fail/fail-texture-missing.cub ; \
 	echo "\033[0;32mtexture format (1 block)\033[0m"    && $(VALGRIND) ./cub3d map/fail/fail-texture-format.cub ; \
 	echo "\033[0;32mtexture format (> 2 blocks)\033[0m" && $(VALGRIND) ./cub3d map/fail/fail-texture-format-2.cub ; \
+	echo "\033[0;32mtexture file\033[0m"                && $(VALGRIND) ./cub3d map/fail/fail-texture-file.cub ; \
+	echo "\033[0;32mtexture file 2\033[0m"              && $(VALGRIND) ./cub3d map/fail/fail-texture-file2.cub ; \
 	echo "\033[0;32mwalls (south limit)\033[0m"         && $(VALGRIND) ./cub3d map/fail/fail-wall.cub ; \
 	echo "\033[0;32mwalls (spawn south limit)\033[0m"   && $(VALGRIND) ./cub3d map/fail/fail-wall-2.cub ; \
 	echo "\033[0;32mwalls (enclosed)\033[0m"            && $(VALGRIND) ./cub3d map/fail/fail-wall-3.cub ; \

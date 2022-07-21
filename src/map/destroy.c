@@ -6,7 +6,7 @@
 /*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/01 14:53:03 by nsierra-          #+#    #+#             */
-/*   Updated: 2022/07/20 22:21:57 by nsierra-         ###   ########.fr       */
+/*   Updated: 2022/07/21 19:55:02 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,9 +43,9 @@ void	map_destroy(void)
 	t_map	*map;
 
 	map = _map();
-	free(map->texture_north.filename);
-	free(map->texture_south.filename);
-	free(map->texture_east.filename);
-	free(map->texture_west.filename);
+	texture_destroy(&map->texture_north);
+	texture_destroy(&map->texture_south);
+	texture_destroy(&map->texture_east);
+	texture_destroy(&map->texture_west);
 	destroy_map_data(map);
 }

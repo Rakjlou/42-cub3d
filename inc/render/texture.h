@@ -1,47 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   map.h                                              :+:      :+:    :+:   */
+/*   texture.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/24 21:26:59 by nsierra-          #+#    #+#             */
-/*   Updated: 2022/07/21 19:14:50 by nsierra-         ###   ########.fr       */
+/*   Updated: 2022/07/21 19:52:26 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MAP_H
-# define MAP_H
+#ifndef TEXTURE_H
+# define TEXTURE_H
 
 # include "libft.h"
-# include "render/color.h"
-# include "render/texture.h"
 
-typedef struct s_tile
+typedef struct s_texture
 {
-	unsigned char	type;
-	int				x;
-	int				y;
-}	t_tile;
+	char	*filename;
+	char	*buffer;
+	void	*image;
+	int		width;
+	int		height;
+	int		depth;
+	int		line_size;
+	int		endian;
+}	t_texture;
 
-typedef struct s_map
-{
-	int			height;
-	int			width;
-	char		*filename;
-	t_texture	texture_north;
-	t_texture	texture_south;
-	t_texture	texture_east;
-	t_texture	texture_west;
-	t_color		color_floor;
-	t_color		color_ceiling;
-	t_tile		**data;
-}	t_map;
-
-t_map	*_map(void);
-
-t_bool	map_init(char *filename);
-void	map_debug(void);
-void	map_destroy(void);
+t_bool	texture_hydrate(t_texture *texture);
+void	texture_destroy(t_texture *texture);
 
 #endif

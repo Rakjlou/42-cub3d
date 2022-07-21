@@ -6,7 +6,7 @@
 /*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/01 14:55:44 by nsierra-          #+#    #+#             */
-/*   Updated: 2022/07/20 23:56:13 by nsierra-         ###   ########.fr       */
+/*   Updated: 2022/07/21 20:04:37 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@
 # define E_MAP_HOLE_MSG "map error: the floor is not surrounded by walls"
 # define E_META_MISSING_MSG "metadata %s missing"
 # define E_MLX_FAILURE_MSG "mlx failed, what a surprise"
+# define E_MLX_XPM_FAILURE_MSG "mlx xpm image loading failed (check files)"
 
 typedef enum e_error_code
 {
@@ -50,7 +51,8 @@ typedef enum e_error_code
 	E_COLOR_VAL,
 	E_META_MISSING,
 	E_MAP_HOLE,
-	E_MLX_FAILURE
+	E_MLX_FAILURE,
+	E_MLX_XPM_FAILURE
 }	t_error_code;
 
 t_bool	errors_register(void);

@@ -1,45 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init.c                                             :+:      :+:    :+:   */
+/*   set_callback.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/01 14:53:03 by nsierra-          #+#    #+#             */
-/*   Updated: 2022/07/21 20:16:27 by nsierra-         ###   ########.fr       */
+/*   Updated: 2022/07/21 21:03:04 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "errors.h"
 #include "render/window.h"
-#include "map/map.h"
 #include "mlx.h"
 
-static t_bool	load_wall_textures(void)
+void	window_set_key_callback(int (*callback)(int))
 {
-	t_map		*map;
-
-	map = _map();
-	return (
-		texture_hydrate(&map->texture_north)
-		&& texture_hydrate(&map->texture_south)
-		&& texture_hydrate(&map->texture_east)
-		&& texture_hydrate(&map->texture_west)
-	);
+	mlx_key_hook(_window()->core, callback, NULL);
+	mlx_hook(_window()->core, 2, 0, callback, NULL);
 }
 
-t_bool	window_init(void)
+void	window_set_mouse_callback(int (*callback)(int, int, int))
 {
-	t_window	*window;
+	mlx_mouse_hook(_window()->core, callback, NULL);
+}
 
-	window = _window();
-	window->mlx = mlx_init();
-	if (window->mlx == NULL)
-		return (fterr_set_error(E_MLX_FAILURE), FALSE);
-	window->core = mlx_new_window(
-			window->mlx,
-			WINDOW_HEIGHT, WINDOW_WIDTH, WINDOW_TITLE);
-	if (window->core == NULL)
-		return (fterr_set_error(E_MLX_FAILURE), FALSE);
-	return (load_wall_textures());
+void	window_set_expose_callback(int (*callback)(void))
+{
+	mlx_expose_hook(_window()->core, callback, NULL);
+}
+
+void	window_set_close_callback(int (*callback)(void))
+{
+	mlx_hook(_window()->core, 17, 0, callback, NULL);
+}
+
+void	window_set_loop_callback(int (*callback)(void))
+{
+	mlx_loop_hook(_window()->mlx, callback, NULL);
 }
