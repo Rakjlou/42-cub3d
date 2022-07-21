@@ -6,7 +6,7 @@
 #    By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/10 23:54:46 by nsierra-          #+#    #+#              #
-#    Updated: 2022/07/21 20:27:50 by nsierra-         ###   ########.fr        #
+#    Updated: 2022/07/21 21:59:25 by nsierra-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,12 +28,14 @@ SRC = src/main.c \
 	src/render/window/destroy.c \
 	src/render/window/set_callback.c \
 	src/render/texture.c \
+	src/player/init.c \
 	src/map/init.c \
 	src/map/parse.c \
 	src/map/destroy.c \
 	src/map/build_matrix.c \
 	src/map/debug.c \
 	src/map/candidate_debug.c \
+	src/map/iterate.c \
 	src/map/validation/is_valid.c \
 	src/map/validation/check_emptiness.c \
 	src/map/validation/check_filename.c \
@@ -85,7 +87,8 @@ fclean: clean
 	make --no-print-directory -C $(LIBFT_DIR) fclean
 	rm -f $(NAME)
 
-re: fclean all
+re: fclean
+	make all
 
 rt: fclean test
 

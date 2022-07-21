@@ -1,42 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   singleton.c                                        :+:      :+:    :+:   */
+/*   iterate.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/26 22:34:35 by nsierra-          #+#    #+#             */
-/*   Updated: 2022/07/21 21:54:36 by nsierra-         ###   ########.fr       */
+/*   Created: 2022/01/18 15:50:19 by nsierra-          #+#    #+#             */
+/*   Updated: 2022/07/21 21:51:05 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "game.h"
-#include "libft.h"
+#include "map/map.h"
+#include "player.h"
 
-t_game	*_game(void)
+void	map_iterate(void (*callback)(t_tile *))
 {
-	static t_bool	first = TRUE;
-	static t_game	game;
+	t_map	*map;
+	int		line;
+	int		column;
 
-	if (first == TRUE)
+	map = _map();
+	line = 0;
+	while (line < map->height)
 	{
-		ft_bzero(&game, sizeof(t_game));
-		first = FALSE;
+		column = 0;
+		while (column < map->width)
+		{
+			callback(&map->data[line][column]);
+			++column;
+		}
+		++line;
 	}
-	return (&game);
-}
-
-t_map	*_map(void)
-{
-	return (&_game()->map);
-}
-
-t_window	*_window(void)
-{
-	return (&_game()->window);
-}
-
-t_player	*_player(void)
-{
-	return (&_game()->player);
 }

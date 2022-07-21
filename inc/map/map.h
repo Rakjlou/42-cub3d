@@ -6,7 +6,7 @@
 /*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/24 21:26:59 by nsierra-          #+#    #+#             */
-/*   Updated: 2022/07/21 19:14:50 by nsierra-         ###   ########.fr       */
+/*   Updated: 2022/07/21 21:48:28 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,7 @@
 # include "libft.h"
 # include "render/color.h"
 # include "render/texture.h"
-
-typedef struct s_tile
-{
-	unsigned char	type;
-	int				x;
-	int				y;
-}	t_tile;
+# include "map/map_tile.h"
 
 typedef struct s_map
 {
@@ -43,5 +37,6 @@ t_map	*_map(void);
 t_bool	map_init(char *filename);
 void	map_debug(void);
 void	map_destroy(void);
+void	map_iterate(void (*callback)(t_tile *));
 
 #endif

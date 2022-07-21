@@ -1,42 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   singleton.c                                        :+:      :+:    :+:   */
+/*   map_tile.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/26 22:34:35 by nsierra-          #+#    #+#             */
-/*   Updated: 2022/07/21 21:54:36 by nsierra-         ###   ########.fr       */
+/*   Created: 2022/01/24 21:26:59 by nsierra-          #+#    #+#             */
+/*   Updated: 2022/07/21 21:47:41 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "game.h"
-#include "libft.h"
+#ifndef MAP_TILE_H
+# define MAP_TILE_H
 
-t_game	*_game(void)
+typedef struct s_tile
 {
-	static t_bool	first = TRUE;
-	static t_game	game;
+	unsigned char	type;
+	int				x;
+	int				y;
+}	t_tile;
 
-	if (first == TRUE)
-	{
-		ft_bzero(&game, sizeof(t_game));
-		first = FALSE;
-	}
-	return (&game);
-}
-
-t_map	*_map(void)
-{
-	return (&_game()->map);
-}
-
-t_window	*_window(void)
-{
-	return (&_game()->window);
-}
-
-t_player	*_player(void)
-{
-	return (&_game()->player);
-}
+#endif

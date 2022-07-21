@@ -6,7 +6,7 @@
 /*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/01 14:53:03 by nsierra-          #+#    #+#             */
-/*   Updated: 2022/07/21 00:03:11 by nsierra-         ###   ########.fr       */
+/*   Updated: 2022/07/21 21:49:58 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,8 @@ static t_bool	generate_map(t_map_candidate *candidate, t_map *map)
 		while (column < map->width)
 		{
 			map->data[line][column].type = candidate->matrix[line][column];
+			map->data[line][column].x = line;
+			map->data[line][column].y = column;
 			++column;
 		}
 		++line;

@@ -1,42 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   singleton.c                                        :+:      :+:    :+:   */
+/*   player.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/26 22:34:35 by nsierra-          #+#    #+#             */
-/*   Updated: 2022/07/21 21:54:36 by nsierra-         ###   ########.fr       */
+/*   Created: 2022/01/24 21:26:59 by nsierra-          #+#    #+#             */
+/*   Updated: 2022/07/21 22:05:57 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "game.h"
-#include "libft.h"
+#ifndef PLAYER_H
+# define PLAYER_H
 
-t_game	*_game(void)
+# include "vectors.h"
+
+typedef struct s_player
 {
-	static t_bool	first = TRUE;
-	static t_game	game;
+	t_dvector	position;
+}	t_player;
 
-	if (first == TRUE)
-	{
-		ft_bzero(&game, sizeof(t_game));
-		first = FALSE;
-	}
-	return (&game);
-}
+t_player	*_player(void);
 
-t_map	*_map(void)
-{
-	return (&_game()->map);
-}
+t_bool		player_init(void);
 
-t_window	*_window(void)
-{
-	return (&_game()->window);
-}
-
-t_player	*_player(void)
-{
-	return (&_game()->player);
-}
+#endif

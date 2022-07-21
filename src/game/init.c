@@ -6,7 +6,7 @@
 /*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/18 15:50:19 by nsierra-          #+#    #+#             */
-/*   Updated: 2022/07/21 21:11:07 by nsierra-         ###   ########.fr       */
+/*   Updated: 2022/07/21 21:58:11 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ static int	loop_callback(void)
 
 t_bool	game_init(char *mapfile)
 {
-	if (!map_init(mapfile) || !window_init())
+	if (!map_init(mapfile) || !window_init() || !player_init())
 		return (FALSE);
 	window_set_key_callback(key_callback);
 	window_set_mouse_callback(mouse_callback);

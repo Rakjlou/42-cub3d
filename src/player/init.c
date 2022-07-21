@@ -1,42 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   singleton.c                                        :+:      :+:    :+:   */
+/*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/26 22:34:35 by nsierra-          #+#    #+#             */
-/*   Updated: 2022/07/21 21:54:36 by nsierra-         ###   ########.fr       */
+/*   Created: 2022/01/18 15:50:19 by nsierra-          #+#    #+#             */
+/*   Updated: 2022/07/21 22:04:33 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "game.h"
-#include "libft.h"
+#include "map/map.h"
+#include "map/map_validation.h"
+#include "player.h"
 
-t_game	*_game(void)
+static void	set_player_spawn_vectors(t_tile *tile)
 {
-	static t_bool	first = TRUE;
-	static t_game	game;
-
-	if (first == TRUE)
+	if (ft_strchr(SPAWN_CHARS, tile->type) != NULL)
 	{
-		ft_bzero(&game, sizeof(t_game));
-		first = FALSE;
+		_player()->position.x = tile->x + 0.5;
+		_player()->position.y = tile->y + 0.5;
 	}
-	return (&game);
 }
 
-t_map	*_map(void)
+t_bool	player_init(void)
 {
-	return (&_game()->map);
-}
-
-t_window	*_window(void)
-{
-	return (&_game()->window);
-}
-
-t_player	*_player(void)
-{
-	return (&_game()->player);
+	map_iterate(set_player_spawn_vectors);
+	return (TRUE);
 }
