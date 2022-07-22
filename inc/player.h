@@ -6,7 +6,7 @@
 /*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/24 21:26:59 by nsierra-          #+#    #+#             */
-/*   Updated: 2022/07/21 22:05:57 by nsierra-         ###   ########.fr       */
+/*   Updated: 2022/07/22 21:53:44 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,6 @@ typedef struct s_player
 
 t_player	*_player(void);
 
-t_bool		player_init(void);
+void	player_init(void);
 
 #endif

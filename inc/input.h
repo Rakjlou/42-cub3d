@@ -6,7 +6,7 @@
 /*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/24 21:26:59 by nsierra-          #+#    #+#             */
-/*   Updated: 2022/07/21 22:15:58 by nsierra-         ###   ########.fr       */
+/*   Updated: 2022/07/22 22:40:37 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,5 +26,8 @@ typedef struct s_input
 }	t_input;
 
 t_input	*_input(void);
+
+void	input_init(void);
+void	input_debug(void);
 
 #endif

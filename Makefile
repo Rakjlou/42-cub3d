@@ -6,7 +6,7 @@
 #    By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/10 23:54:46 by nsierra-          #+#    #+#              #
-#    Updated: 2022/07/21 21:59:25 by nsierra-         ###   ########.fr        #
+#    Updated: 2022/07/22 22:40:43 by nsierra-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,10 +23,13 @@ SRC = src/main.c \
 	src/game/init.c \
 	src/game/destroy.c \
 	src/game/loop.c \
+	src/input/init.c \
+	src/input/debug.c \
 	src/render/color.c \
 	src/render/window/init.c \
 	src/render/window/destroy.c \
 	src/render/window/set_callback.c \
+	src/render/window/set_key_callback.c \
 	src/render/texture.c \
 	src/player/init.c \
 	src/map/init.c \

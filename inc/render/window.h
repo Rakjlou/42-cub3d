@@ -6,7 +6,7 @@
 /*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/01 14:55:44 by nsierra-          #+#    #+#             */
-/*   Updated: 2022/07/21 21:36:47 by nsierra-         ###   ########.fr       */
+/*   Updated: 2022/07/22 22:24:40 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,9 @@ t_window	*_window(void);
 t_bool		window_init(void);
 void		window_destroy(void);
 
-void		window_set_key_callback(int (*callback)(int));
-void		window_set_mouse_callback(int (*callback)(int, int, int));
+void		window_set_keydown_callback(int (*callback)(int));
+void		window_set_keyup_callback(int (*callback)(int));
+void		window_set_mouse_click_callback(int (*callback)(int, int, int));
 void		window_set_expose_callback(int (*callback)(void));
 void		window_set_close_callback(int (*callback)(void));
 void		window_set_loop_callback(int (*callback)(void));
