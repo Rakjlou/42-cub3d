@@ -6,7 +6,7 @@
 /*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/01 14:55:44 by nsierra-          #+#    #+#             */
-/*   Updated: 2022/07/21 20:04:37 by nsierra-         ###   ########.fr       */
+/*   Updated: 2022/07/23 00:00:01 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 # define E_MALLOC_MSG "malloc failed"
 # define E_MAP_OPEN_MSG "cannot open map file %s"
 # define E_MAP_EMPTY_MSG "map file %s is empty, or maybe it's a directory idk"
+# define E_MAP_BIG_MSG "the map is immense, please chill"
 # define E_MAP_EXT_MSG "%s: incorrect file extension"
 # define E_MAP_EXT2_MSG "%s: weird file extension edge case error"
 # define E_MAP_CHAR_MSG "map has at least one invalid character"
@@ -40,6 +41,7 @@ typedef enum e_error_code
 	E_MALLOC,
 	E_MAP_OPEN,
 	E_MAP_EMPTY,
+	E_MAP_BIG,
 	E_MAP_EXT,
 	E_MAP_EXT2,
 	E_MAP_CHAR,

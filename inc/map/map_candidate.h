@@ -6,7 +6,7 @@
 /*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/24 21:26:59 by nsierra-          #+#    #+#             */
-/*   Updated: 2022/07/20 22:03:42 by nsierra-         ###   ########.fr       */
+/*   Updated: 2022/07/23 00:23:05 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define MAP_CANDIDATE_H
 
 # define MAP_TRIM " \t\n\r\v\f"
+# define MAX_FILE_LINES 1000000
 
 # include "ftlst.h"
 # include "render/color.h"

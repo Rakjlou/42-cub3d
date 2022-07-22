@@ -6,7 +6,7 @@
 /*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/01 15:24:29 by nsierra-          #+#    #+#             */
-/*   Updated: 2022/07/21 19:22:17 by nsierra-         ###   ########.fr       */
+/*   Updated: 2022/07/23 00:00:28 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ t_bool	errors_register(void)
 		|| !er(E_MAP_HOLE, E_MAP_HOLE_MSG, NULL)
 		|| !er(E_MLX_FAILURE, E_MLX_FAILURE_MSG, NULL)
 		|| !er(E_MLX_XPM_FAILURE, E_MLX_XPM_FAILURE_MSG, NULL)
+		|| !er(E_MAP_BIG, E_MAP_BIG_MSG, NULL)
 		|| !er(E_META_MISSING, E_META_MISSING_MSG, fterr_default_printf)
 		|| !er(E_COLOR_DEF, E_COLOR_DEF_MSG, fterr_default_printf)
 		|| !er(E_COLOR_VAL, E_COLOR_VAL_MSG, fterr_default_printf)

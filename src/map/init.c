@@ -6,7 +6,7 @@
 /*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/01 14:53:03 by nsierra-          #+#    #+#             */
-/*   Updated: 2022/07/22 23:34:21 by nsierra-         ###   ########.fr       */
+/*   Updated: 2022/07/23 00:22:24 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,11 +25,13 @@ static t_bool	line_callback(const char *line, void *data)
 	char			*dup_line;
 
 	candidate = (t_map_candidate *)data;
+	if (candidate->lines.size > MAX_FILE_LINES)
+		return (fterr_set_error(E_MAP_BIG), FALSE);
 	dup_line = ft_strdup(line);
 	if (dup_line == NULL)
 		return (fterr_set_error(E_MALLOC), FALSE);
 	else if (lst_push_back(&candidate->lines, dup_line) == 0)
-		return (fterr_set_error(E_MALLOC), FALSE);
+		return (free(dup_line), fterr_set_error(E_MALLOC), FALSE);
 	return (TRUE);
 }
 
@@ -92,7 +94,7 @@ t_bool	map_init(char *filename)
 	candidate.filename = filename;
 	status = readf(filename, line_callback, &candidate);
 	if (status == FTRF_E_READL)
-		return (FALSE);
+		return (map_candidate_destroy(&candidate), FALSE);
 	else if (status == FTRF_E_FILE_OPEN)
 		return (
 			map_candidate_destroy(&candidate),

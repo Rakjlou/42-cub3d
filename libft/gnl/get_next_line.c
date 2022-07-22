@@ -6,7 +6,7 @@
 /*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/03 01:43:34 by nsierra-          #+#    #+#             */
-/*   Updated: 2022/01/18 15:55:16 by nsierra-         ###   ########.fr       */
+/*   Updated: 2022/07/23 00:19:42 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,9 @@ char	*get_next_line(int fd)
 {
 	static t_gnl_node	*list = NULL;
 
-	if (list == NULL)
+	if (fd == GNL_FREE_TRIGGER)
+		return (free_list(&list, NULL), NULL);
+	else if (list == NULL)
 	{
 		list = get_buffer(fd);
 		if (list == NULL)
