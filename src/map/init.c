@@ -6,7 +6,7 @@
 /*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/01 14:53:03 by nsierra-          #+#    #+#             */
-/*   Updated: 2022/07/21 21:49:58 by nsierra-         ###   ########.fr       */
+/*   Updated: 2022/07/22 23:34:21 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,7 @@ t_bool	map_init(char *filename)
 			fterr_set(E_MAP_OPEN, (void *)filename, NULL),
 			FALSE
 		);
-	else if (&candidate.lines.size == 0)
+	else if (candidate.lines.size == 0)
 		return (fterr_set(E_MAP_EMPTY, candidate.filename, NULL), FALSE);
 	else if (!map_candidate_parse(&candidate)
 		|| !map_candidate_is_valid(&candidate)
