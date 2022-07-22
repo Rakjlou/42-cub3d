@@ -6,7 +6,7 @@
 #    By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/10 23:54:46 by nsierra-          #+#    #+#              #
-#    Updated: 2022/07/22 22:40:43 by nsierra-         ###   ########.fr        #
+#    Updated: 2022/07/22 23:34:02 by nsierra-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -53,7 +53,7 @@ SRC = src/main.c \
 OBJ = $(SRC:.c=.o)
 DEPS = $(SRC:.c=.d)
 
-CC = gcc
+CC = cc
 
 LIBFT_DIR = libft
 MLX_DIR = minilibx-linux
