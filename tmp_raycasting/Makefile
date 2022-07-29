@@ -6,7 +6,7 @@ VALGRIND = valgrind --leak-check=full --track-origins=yes --show-leak-kinds=all 
 TESTMAP = test.cub
 #TESTMAP = fail/fail-wall-13.cub
 
-SRC = tmp_raycasting/raycasting2.c \
+SRC = tmp_raycasting/raycasting3.c \
 
 OBJ = ../$(SRC:.c=.o)
 DEPS = ../$(SRC:.c=.d)
