@@ -6,7 +6,7 @@
 /*   By: ddordain <ddordain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/28 14:35:17 by ddordain          #+#    #+#             */
-/*   Updated: 2022/07/29 13:53:52 by ddordain         ###   ########.fr       */
+/*   Updated: 2022/07/29 15:01:20 by ddordain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -291,7 +291,7 @@ void color_wall(void)
 		dda->color = dda->color / 2;
 }
 
-void	calc(void)
+void	compute_raycasting(void)
 {
 	t_info *info;
 	t_dda	*d;
@@ -312,51 +312,68 @@ void	calc(void)
 	}
 }
 
-int	key_press(int key)
+void	button_up(void)
 {
-	t_info *info;
+	t_info	*info;
 
 	info = _mlx_data();
+	if (!worldMap[(int)(info->posX + info->dirX * info->moveSpeed)][(int)(info->posY)])
+		info->posX += info->dirX * info->moveSpeed;
+	if (!worldMap[(int)(info->posX)][(int)(info->posY + info->dirY * info->moveSpeed)])
+		info->posY += info->dirY * info->moveSpeed;
+}
+
+void	button_down(void)
+{
+	t_info	*info;
+
+	info = _mlx_data();
+	if (!worldMap[(int)(info->posX - info->dirX * info->moveSpeed)][(int)(info->posY)])
+		info->posX -= info->dirX * info->moveSpeed;
+	if (!worldMap[(int)(info->posX)][(int)(info->posY - info->dirY * info->moveSpeed)])
+		info->posY -= info->dirY * info->moveSpeed;	
+}
+
+void	button_right(void)
+{
+	t_info	*info;
+	double oldDirX;
+	double oldPlaneX;
+
+	info = _mlx_data();
+	oldDirX = info->dirX;
+	info->dirX = info->dirX * cos(-info->rotSpeed) - info->dirY * sin(-info->rotSpeed);
+	info->dirY = oldDirX * sin(-info->rotSpeed) + info->dirY * cos(-info->rotSpeed);
+	oldPlaneX = info->planeX;
+	info->planeX = info->planeX * cos(-info->rotSpeed) - info->planeY * sin(-info->rotSpeed);
+	info->planeY = oldPlaneX * sin(-info->rotSpeed) + info->planeY * cos(-info->rotSpeed);
+}
+
+void	button_left(void)
+{
+	t_info	*info;
+	double	oldDirX;
+	double	oldPlaneX;
+
+	info = _mlx_data();
+	oldDirX = info->dirX;
+	info->dirX = info->dirX * cos(info->rotSpeed) - info->dirY * sin(info->rotSpeed);
+	info->dirY = oldDirX * sin(info->rotSpeed) + info->dirY * cos(info->rotSpeed);
+	oldPlaneX = info->planeX;
+	info->planeX = info->planeX * cos(info->rotSpeed) - info->planeY * sin(info->rotSpeed);
+	info->planeY = oldPlaneX * sin(info->rotSpeed) + info->planeY * cos(info->rotSpeed);	
+}
+
+int	buttons(int key)
+{
 	if (key == UP)
-	{
-		puts("up");
-		printf("%f\n", info->posX);
-		if (!worldMap[(int)(info->posX + info->dirX * info->moveSpeed)][(int)(info->posY)])
-			info->posX += info->dirX * info->moveSpeed;
-		if (!worldMap[(int)(info->posX)][(int)(info->posY + info->dirY * info->moveSpeed)])
-			info->posY += info->dirY * info->moveSpeed;
-		printf("%f\n", info->posX);
-	}
-	//move backwards if no wall behind you
+		button_up();
 	if (key == DOWN)
-	{
-		if (!worldMap[(int)(info->posX - info->dirX * info->moveSpeed)][(int)(info->posY)])
-			info->posX -= info->dirX * info->moveSpeed;
-		if (!worldMap[(int)(info->posX)][(int)(info->posY - info->dirY * info->moveSpeed)])
-			info->posY -= info->dirY * info->moveSpeed;
-	}
-	//rotate to the right
+		button_down();
 	if (key == RIGHT)
-	{
-		//both camera direction and camera plane must be rotated
-		double oldDirX = info->dirX;
-		info->dirX = info->dirX * cos(-info->rotSpeed) - info->dirY * sin(-info->rotSpeed);
-		info->dirY = oldDirX * sin(-info->rotSpeed) + info->dirY * cos(-info->rotSpeed);
-		double oldPlaneX = info->planeX;
-		info->planeX = info->planeX * cos(-info->rotSpeed) - info->planeY * sin(-info->rotSpeed);
-		info->planeY = oldPlaneX * sin(-info->rotSpeed) + info->planeY * cos(-info->rotSpeed);
-	}
-	//rotate to the left
+		button_right();
 	if (key == LEFT)
-	{
-		//both camera direction and camera plane must be rotated
-		double oldDirX = info->dirX;
-		info->dirX = info->dirX * cos(info->rotSpeed) - info->dirY * sin(info->rotSpeed);
-		info->dirY = oldDirX * sin(info->rotSpeed) + info->dirY * cos(info->rotSpeed);
-		double oldPlaneX = info->planeX;
-		info->planeX = info->planeX * cos(info->rotSpeed) - info->planeY * sin(info->rotSpeed);
-		info->planeY = oldPlaneX * sin(info->rotSpeed) + info->planeY * cos(info->rotSpeed);
-	}
+		button_left();
 	if (key == ESC)
 		exit(0);
 	display();
@@ -388,7 +405,7 @@ void	display(void)
 
 	info = _mlx_data();
 	display_background();
-	calc();
+	compute_raycasting();
 	mlx_put_image_to_window(info->mlx, info->mlx_win, info->img, 0, 0);
 }
 
@@ -399,7 +416,7 @@ int	main(void)
 	mlx_data = _mlx_data();
 	init_mlx();
 	display();
-	mlx_hook(mlx_data->mlx_win, 2, 1L << 0, key_press, &mlx_data);
+	mlx_hook(mlx_data->mlx_win, 2, 1L << 0, buttons, &mlx_data);
 	mlx_put_image_to_window(mlx_data->mlx, mlx_data->mlx_win, mlx_data->img, 0, 0);
 	mlx_loop(mlx_data->mlx);
 }
