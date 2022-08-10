@@ -6,10 +6,10 @@
 #    By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/10 23:54:46 by nsierra-          #+#    #+#              #
-#    Updated: 2022/07/22 23:34:02 by nsierra-         ###   ########.fr        #
+#    Updated: 2022/08/10 19:05:49 by nsierra-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
-
+# /!\ CAUTION /!\ IN PLAYER DEBUG, REMOVE DPRINTF CALLS
 NAME = cub3d
 
 VALGRIND = valgrind --leak-check=full --track-origins=yes --show-leak-kinds=all --show-reachable=yes
@@ -32,6 +32,7 @@ SRC = src/main.c \
 	src/render/window/set_key_callback.c \
 	src/render/texture.c \
 	src/player/init.c \
+	src/player/debug.c \
 	src/map/init.c \
 	src/map/parse.c \
 	src/map/destroy.c \
@@ -39,6 +40,7 @@ SRC = src/main.c \
 	src/map/debug.c \
 	src/map/candidate_debug.c \
 	src/map/iterate.c \
+	src/map/tile_is.c \
 	src/map/validation/is_valid.c \
 	src/map/validation/check_emptiness.c \
 	src/map/validation/check_filename.c \

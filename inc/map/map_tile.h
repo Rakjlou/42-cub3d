@@ -6,12 +6,14 @@
 /*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/24 21:26:59 by nsierra-          #+#    #+#             */
-/*   Updated: 2022/07/21 21:47:41 by nsierra-         ###   ########.fr       */
+/*   Updated: 2022/08/10 18:08:26 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MAP_TILE_H
 # define MAP_TILE_H
+
+# include "libft.h"
 
 typedef struct s_tile
 {
@@ -19,5 +21,7 @@ typedef struct s_tile
 	int				x;
 	int				y;
 }	t_tile;
+
+t_bool	tile_is(t_tile *tile, unsigned char type);
 
 #endif

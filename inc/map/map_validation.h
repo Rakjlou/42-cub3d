@@ -6,7 +6,7 @@
 /*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/24 21:26:59 by nsierra-          #+#    #+#             */
-/*   Updated: 2022/07/18 22:31:23 by nsierra-         ###   ########.fr       */
+/*   Updated: 2022/08/10 18:08:06 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,11 @@
 # define WALL_CHARS "1"
 # define FLOOR_CHARS "0"
 # define OUTSIDE_CHARS " "
+# define SPAWN_NORTH "N"
+# define SPAWN_SOUTH "S"
+# define SPAWN_EAST "E"
+# define SPAWN_WEST "W"
+/*# define SPAWN_CHARS SPAWN_NORTH SPAWN_SOUTH SPAWN_EAST SPAWN_WEST*/
 # define SPAWN_CHARS "NSEW"
 /*# define MAP_CHARS WALL_CHARS FLOOR_CHARS OUTSIDE_CHARS SPAWN_CHARS*/
 # define MAP_CHARS " 10NSEW"
