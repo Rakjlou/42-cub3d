@@ -6,12 +6,13 @@
 /*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/01 14:53:03 by nsierra-          #+#    #+#             */
-/*   Updated: 2022/07/22 22:22:47 by nsierra-         ###   ########.fr       */
+/*   Updated: 2022/08/11 22:43:06 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "errors.h"
 #include "render/window.h"
+#include "errors.h"
+#include "game.h"
 #include "mlx.h"
 
 void	window_set_mouse_click_callback(int (*callback)(int, int, int))

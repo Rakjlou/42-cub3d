@@ -6,7 +6,7 @@
 /*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/01 14:55:44 by nsierra-          #+#    #+#             */
-/*   Updated: 2022/07/22 22:24:40 by nsierra-         ###   ########.fr       */
+/*   Updated: 2022/08/12 01:32:19 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,20 +26,27 @@
 # define KEY_ARROW_RIGHT 65363
 
 # include "bool.h"
+# include "render/color.h"
 
 typedef struct s_window
 {
-	int		height;
-	int		length;
 	char	*title;
 	void	*core;
 	void	*mlx;
+	void	*buffer_image;
+	char	*buffer;
+	int		depth;
+	int		line_size;
+	int		endian;
 }	t_window;
 
 t_window	*_window(void);
 
 t_bool		window_init(void);
 void		window_destroy(void);
+void		window_refresh(void);
+
+void		window_set_pixel(int line, int column, t_color *color);
 
 void		window_set_keydown_callback(int (*callback)(int));
 void		window_set_keyup_callback(int (*callback)(int));

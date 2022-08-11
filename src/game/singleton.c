@@ -6,7 +6,7 @@
 /*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/26 22:34:35 by nsierra-          #+#    #+#             */
-/*   Updated: 2022/08/10 17:53:35 by nsierra-         ###   ########.fr       */
+/*   Updated: 2022/08/11 22:51:31 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,20 +28,36 @@ t_game	*_game(void)
 
 t_map	*_map(void)
 {
-	return (&_game()->map);
+	static t_map	*map = NULL;
+
+	if (map == NULL)
+		map = &_game()->map;
+	return (map);
 }
 
 t_window	*_window(void)
 {
-	return (&_game()->window);
+	static t_window	*window = NULL;
+
+	if (window == NULL)
+		window = &_game()->window;
+	return (window);
 }
 
 t_player	*_player(void)
 {
-	return (&_game()->player);
+	static t_player	*player = NULL;
+
+	if (player == NULL)
+		player = &_game()->player;
+	return (player);
 }
 
 t_input	*_input(void)
 {
-	return (&_game()->input);
+	static t_input	*input = NULL;
+
+	if (input == NULL)
+		input = &_game()->input;
+	return (input);
 }
