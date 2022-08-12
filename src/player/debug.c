@@ -6,7 +6,7 @@
 /*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/18 15:50:19 by nsierra-          #+#    #+#             */
-/*   Updated: 2022/08/11 23:00:23 by nsierra-         ###   ########.fr       */
+/*   Updated: 2022/08/12 13:37:48 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,8 @@ void	player_debug(void)
 
 	p = _player();
 	ftfprintf(STDERR_FILENO, "vvv PLAYER DEBUG vvv\n");
-	dprintf(STDERR_FILENO, "Position:  %f %f\n", p->pos.x, p->pos.y);
+	dprintf(STDERR_FILENO, "Position:  %f (%d) %f (%d)\n",
+		p->pos.x, (int)p->pos.x, p->pos.y, (int)p->pos.y);
 	dprintf(STDERR_FILENO, "Direction: %f %f\n", p->dir.x, p->dir.y);
 	dprintf(STDERR_FILENO, "FOV:       %f %f\n", p->fov.x, p->fov.y);
 	dprintf(STDERR_FILENO, "Speed:     %f\n", p->speed);

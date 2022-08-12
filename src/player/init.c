@@ -6,7 +6,7 @@
 /*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/18 15:50:19 by nsierra-          #+#    #+#             */
-/*   Updated: 2022/08/12 11:20:39 by nsierra-         ###   ########.fr       */
+/*   Updated: 2022/08/12 14:21:55 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,8 +48,8 @@ static void	set_initial_values(t_tile *tile)
 	{
 		_player()->speed = PLAYER_DEFAULT_SPEED;
 		_player()->rotation_speed = PLAYER_DEFAULT_ROTATION_SPEED;
-		_player()->pos.x = tile->x + 0.5;
-		_player()->pos.y = tile->y + 0.5;
+		_player()->pos.x = tile->x + PLAYER_START_POS_OFFSET;
+		_player()->pos.y = tile->y + PLAYER_START_POS_OFFSET;
 		set_direction(tile);
 	}
 }
