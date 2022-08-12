@@ -6,7 +6,7 @@
 /*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/18 15:50:19 by nsierra-          #+#    #+#             */
-/*   Updated: 2022/07/21 21:51:05 by nsierra-         ###   ########.fr       */
+/*   Updated: 2022/08/11 23:01:40 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	map_iterate(void (*callback)(t_tile *))
 		column = 0;
 		while (column < map->width)
 		{
-			callback(&map->data[line][column]);
+			callback(&map->tiles[line][column]);
 			++column;
 		}
 		++line;

@@ -1,25 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   set_pixel.c                                        :+:      :+:    :+:   */
+/*   get_tile.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/01 14:53:03 by nsierra-          #+#    #+#             */
-/*   Updated: 2022/08/11 23:35:27 by nsierra-         ###   ########.fr       */
+/*   Created: 2022/01/18 15:50:19 by nsierra-          #+#    #+#             */
+/*   Updated: 2022/08/11 22:10:18 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "render/window.h"
-#include "mlx.h"
+#include "map/map.h"
 
-void	window_set_pixel(int line, int column, t_color color)
+t_tile	*map_get_tile(int line, int column)
 {
-	t_window	*window;
-	int			*pixel;
+	t_map	*map;
 
-	window = _window();
-	pixel = (int *)(window->buffer
-			+ (line * window->line_size + column * sizeof(int)));
-	*pixel = color;
+	map = _map();
+	if (line < 0 || line >= map->height || column < 0 || column >= map->width)
+		return (NULL);
+	return (&map->tiles[line][column]);
 }

@@ -6,7 +6,7 @@
 /*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/01 14:53:03 by nsierra-          #+#    #+#             */
-/*   Updated: 2022/07/23 00:22:24 by nsierra-         ###   ########.fr       */
+/*   Updated: 2022/08/11 23:00:57 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,20 +42,20 @@ static t_bool	generate_map(t_map_candidate *candidate, t_map *map)
 
 	line = 0;
 	column = 0;
-	map->data = ft_calloc(map->height, sizeof(t_tile *));
-	if (map->data == NULL)
+	map->tiles = ft_calloc(map->height, sizeof(t_tile *));
+	if (map->tiles == NULL)
 		return (fterr_set_error(E_MALLOC), FALSE);
 	while (line < map->height)
 	{
-		map->data[line] = ft_calloc(map->width, sizeof(t_tile));
-		if (map->data[line] == NULL)
+		map->tiles[line] = ft_calloc(map->width, sizeof(t_tile));
+		if (map->tiles[line] == NULL)
 			return (fterr_set_error(E_MALLOC), FALSE);
 		column = 0;
 		while (column < map->width)
 		{
-			map->data[line][column].type = candidate->matrix[line][column];
-			map->data[line][column].x = line;
-			map->data[line][column].y = column;
+			map->tiles[line][column].type = candidate->matrix[line][column];
+			map->tiles[line][column].x = line;
+			map->tiles[line][column].y = column;
 			++column;
 		}
 		++line;

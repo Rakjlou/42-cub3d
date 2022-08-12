@@ -6,7 +6,7 @@
 /*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/18 15:50:19 by nsierra-          #+#    #+#             */
-/*   Updated: 2022/08/10 19:02:38 by nsierra-         ###   ########.fr       */
+/*   Updated: 2022/08/11 21:49:14 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ static void	set_initial_values(t_tile *tile)
 	{
 		_player()->speed = PLAYER_DEFAULT_SPEED;
 		_player()->rotation_speed = PLAYER_DEFAULT_ROTATION_SPEED;
-		_player()->plane.y = PLAYER_DEFAULT_PLANE;
+		_player()->fov.y = PLAYER_DEFAULT_FOV;
 		_player()->pos.x = tile->x + 0.5;
 		_player()->pos.y = tile->y + 0.5;
 		set_direction(tile);

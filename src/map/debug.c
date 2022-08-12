@@ -6,7 +6,7 @@
 /*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/01 14:53:03 by nsierra-          #+#    #+#             */
-/*   Updated: 2022/07/20 22:21:25 by nsierra-         ###   ########.fr       */
+/*   Updated: 2022/08/11 23:01:32 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ static void	print_data(t_map *map)
 		ftprintf(">");
 		while (column < map->width)
 		{
-			ftprintf("%c", map->data[line][column].type);
+			ftprintf("%c", map->tiles[line][column].type);
 			++column;
 		}
 		ftprintf("<\n");

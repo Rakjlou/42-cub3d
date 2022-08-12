@@ -6,7 +6,7 @@
 /*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/01 14:53:03 by nsierra-          #+#    #+#             */
-/*   Updated: 2022/08/12 01:34:18 by nsierra-         ###   ########.fr       */
+/*   Updated: 2022/08/11 23:35:01 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,12 @@ void	render_background(void)
 {
 	int			line;
 	int			column;
-	t_color		*ceiling;
-	t_color		*floor;
+	t_color		ceiling;
+	t_color		floor;
 
 	line = 0;
-	ceiling = &_map()->color_ceiling;
-	floor = &_map()->color_floor;
+	ceiling = _map()->color_ceiling;
+	floor = _map()->color_floor;
 	while (line < WINDOW_HEIGHT)
 	{
 		column = 0;

@@ -6,7 +6,7 @@
 /*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/24 21:26:59 by nsierra-          #+#    #+#             */
-/*   Updated: 2022/08/11 22:43:44 by nsierra-         ###   ########.fr       */
+/*   Updated: 2022/08/11 22:10:44 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,14 +29,17 @@ typedef struct s_map
 	t_texture	texture_west;
 	t_color		color_floor;
 	t_color		color_ceiling;
-	t_tile		**data;
+	t_tile		**tiles;
 }	t_map;
 
 t_map	*_map(void);
+
 
 t_bool	map_init(char *filename);
 void	map_debug(void);
 void	map_destroy(void);
 void	map_iterate(void (*callback)(t_tile *));
+
+t_tile	*map_get_tile(int line, int column);
 
 #endif

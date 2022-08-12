@@ -6,7 +6,7 @@
 /*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/01 14:55:44 by nsierra-          #+#    #+#             */
-/*   Updated: 2022/08/12 01:32:19 by nsierra-         ###   ########.fr       */
+/*   Updated: 2022/08/11 23:34:59 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ t_bool		window_init(void);
 void		window_destroy(void);
 void		window_refresh(void);
 
-void		window_set_pixel(int line, int column, t_color *color);
+void		window_set_pixel(int line, int column, t_color color);
 
 void		window_set_keydown_callback(int (*callback)(int));
 void		window_set_keyup_callback(int (*callback)(int));

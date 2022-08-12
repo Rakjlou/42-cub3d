@@ -6,7 +6,7 @@
 /*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/01 14:53:03 by nsierra-          #+#    #+#             */
-/*   Updated: 2022/07/21 19:55:02 by nsierra-         ###   ########.fr       */
+/*   Updated: 2022/08/11 23:01:19 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,9 @@ static void	destroy_map_data(t_map *map)
 
 	line = 0;
 	while (line < map->height)
-		free(map->data[line++]);
-	free(map->data);
-	map->data = NULL;
+		free(map->tiles[line++]);
+	free(map->tiles);
+	map->tiles = NULL;
 }
 
 void	map_candidate_destroy(t_map_candidate *candidate)

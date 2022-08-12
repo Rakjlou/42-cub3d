@@ -1,25 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   set_pixel.c                                        :+:      :+:    :+:   */
+/*   mult.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/01 14:53:03 by nsierra-          #+#    #+#             */
-/*   Updated: 2022/08/11 23:35:27 by nsierra-         ###   ########.fr       */
+/*   Updated: 2022/08/11 22:00:41 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "render/window.h"
-#include "mlx.h"
+#include "vectors.h"
 
-void	window_set_pixel(int line, int column, t_color color)
+void	ivector_mult(t_ivector *a, t_ivector *b, t_ivector *result)
 {
-	t_window	*window;
-	int			*pixel;
+	result->x = a->x * b->x;
+	result->y = a->y * b->y;
+}
 
-	window = _window();
-	pixel = (int *)(window->buffer
-			+ (line * window->line_size + column * sizeof(int)));
-	*pixel = color;
+void	dvector_mult(t_dvector *a, t_dvector *b, t_dvector *result)
+{
+	result->x = a->x * b->x;
+	result->y = a->y * b->y;
 }

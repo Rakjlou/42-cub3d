@@ -6,7 +6,7 @@
 #    By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/10 23:54:46 by nsierra-          #+#    #+#              #
-#    Updated: 2022/08/12 01:33:55 by nsierra-         ###   ########.fr        #
+#    Updated: 2022/08/11 23:02:37 by nsierra-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 # /!\ CAUTION /!\ IN PLAYER DEBUG, REMOVE DPRINTF CALLS
@@ -44,6 +44,8 @@ SRC = src/main.c \
 	src/map/candidate_debug.c \
 	src/map/iterate.c \
 	src/map/tile_is.c \
+	src/map/tile_collides.c \
+	src/map/get_tile.c \
 	src/map/validation/is_valid.c \
 	src/map/validation/check_emptiness.c \
 	src/map/validation/check_filename.c \
@@ -54,6 +56,8 @@ SRC = src/main.c \
 	src/map/validation/check_metadata_helpers.c \
 	src/map/validation/check_walls.c \
 	src/map/validation/tile_is.c \
+	src/vectors/add.c \
+	src/vectors/mult.c \
 
 OBJ = $(SRC:.c=.o)
 DEPS = $(SRC:.c=.d)
