@@ -6,7 +6,7 @@
 /*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/01 14:53:03 by nsierra-          #+#    #+#             */
-/*   Updated: 2022/08/12 19:15:17 by nsierra-         ###   ########.fr       */
+/*   Updated: 2022/08/12 19:23:39 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,11 +34,19 @@ static t_color	alpha_blend(t_color background, t_color foreground)
 
 void	window_set_pixel(int line, int column, t_color color)
 {
-	t_color		*pixel;
+	static t_window	*window = NULL;
+	t_color			*pixel;
 
+	if (window == NULL)
+		window = _window();
 	pixel = window_get_pixel(line, column);
 	if (pixel != NULL)
-		*pixel = alpha_blend(*pixel, color);
+	{
+		if (window->enable_transparency == TRUE)
+			*pixel = alpha_blend(*pixel, color);
+		else
+			*pixel = color;
+	}
 }
 
 t_color	*window_get_pixel(int line, int column)

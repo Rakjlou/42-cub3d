@@ -6,7 +6,7 @@
 /*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/01 14:55:44 by nsierra-          #+#    #+#             */
-/*   Updated: 2022/08/12 18:19:17 by nsierra-         ###   ########.fr       */
+/*   Updated: 2022/08/12 19:21:28 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ typedef struct s_window
 	int		depth;
 	int		line_size;
 	int		endian;
+	t_bool	enable_transparency;
 }	t_window;
 
 t_window	*_window(void);

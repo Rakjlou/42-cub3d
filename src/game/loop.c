@@ -6,7 +6,7 @@
 /*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/18 15:50:19 by nsierra-          #+#    #+#             */
-/*   Updated: 2022/08/12 19:15:36 by nsierra-         ###   ########.fr       */
+/*   Updated: 2022/08/12 19:24:31 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,6 @@
 			0
 		)
 	);*/
-
 
 void	rect_set_pixel(t_rect *rect, int line, int column, t_color color)
 {
@@ -73,16 +72,20 @@ void	render_rect(t_rect *rect)
 
 static void	render_minimap(void)
 {
-	int		size;
-	t_rect	zone;
+	t_window	*window;
+	int			size;
+	t_rect		zone;
 
+	window = _window();
 	size = (int)(ft_min(WINDOW_WIDTH, WINDOW_HEIGHT) * 0.25);
 	zone.start.x = 10;
 	zone.start.y = WINDOW_WIDTH - size - 10;
 	zone.end.x = zone.start.x + size;
 	zone.end.y = zone.start.y + size;
 	zone.fill_color = 0x7FFFFFFF;
+	window->enable_transparency = TRUE;
 	render_rect(&zone);
+	window->enable_transparency = FALSE;
 }
 
 static void	game_update(void)

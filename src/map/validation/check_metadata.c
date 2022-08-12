@@ -6,7 +6,7 @@
 /*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/25 20:07:37 by nsierra-          #+#    #+#             */
-/*   Updated: 2022/07/19 01:12:21 by nsierra-         ###   ########.fr       */
+/*   Updated: 2022/08/12 19:19:43 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ static t_bool	check_set_color(t_color *color, char *color_raw)
 		++i;
 	}
 	*color = color_build_str(color_split[0], color_split[1],
-			color_split[2], "-1");
+			color_split[2], "0");
 	return (ft_cmatrix_free(color_split), TRUE);
 }
 
