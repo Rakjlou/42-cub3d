@@ -6,7 +6,7 @@
 #    By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/10 23:54:46 by nsierra-          #+#    #+#              #
-#    Updated: 2022/08/12 12:09:12 by nsierra-         ###   ########.fr        #
+#    Updated: 2022/08/12 14:57:08 by nsierra-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 # /!\ CAUTION /!\ IN PLAYER DEBUG, REMOVE DPRINTF CALLS
@@ -36,6 +36,10 @@ SRC = src/main.c \
 	src/render/window/set_key_callback.c \
 	src/player/init.c \
 	src/player/debug.c \
+	src/player/move_horizontal.c \
+	src/player/move_vertical.c \
+	src/player/rotate.c \
+	src/player/update.c \
 	src/map/init.c \
 	src/map/parse.c \
 	src/map/destroy.c \
@@ -62,6 +66,8 @@ SRC = src/main.c \
 	src/raycasting/ray_init.c \
 	src/raycasting/ray_hit.c \
 	src/raycasting/raycast_wall_from_wcolumn.c \
+
+
 
 OBJ = $(SRC:.c=.o)
 DEPS = $(SRC:.c=.d)
