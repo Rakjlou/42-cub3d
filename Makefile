@@ -6,7 +6,7 @@
 #    By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/10 23:54:46 by nsierra-          #+#    #+#              #
-#    Updated: 2022/08/12 14:57:08 by nsierra-         ###   ########.fr        #
+#    Updated: 2022/08/12 18:19:00 by nsierra-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 # /!\ CAUTION /!\ IN PLAYER DEBUG, REMOVE DPRINTF CALLS
@@ -31,7 +31,7 @@ SRC = src/main.c \
 	src/render/window/init.c \
 	src/render/window/destroy.c \
 	src/render/window/refresh.c \
-	src/render/window/set_pixel.c \
+	src/render/window/pixel.c \
 	src/render/window/set_callback.c \
 	src/render/window/set_key_callback.c \
 	src/player/init.c \
