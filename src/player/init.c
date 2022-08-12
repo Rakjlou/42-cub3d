@@ -6,7 +6,7 @@
 /*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/18 15:50:19 by nsierra-          #+#    #+#             */
-/*   Updated: 2022/08/12 15:07:27 by nsierra-         ###   ########.fr       */
+/*   Updated: 2022/08/12 16:01:11 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ static void	set_direction(t_tile *tile)
 	else if (tile_is(tile, *SPAWN_SOUTH))
 	{
 		_player()->dir.x = 1;
-		_player()->fov.y = PLAYER_DEFAULT_FOV;
+		_player()->fov.y = -PLAYER_DEFAULT_FOV;
 	}
 	else if (tile_is(tile, *SPAWN_EAST))
 	{
@@ -38,7 +38,7 @@ static void	set_direction(t_tile *tile)
 	else if (tile_is(tile, *SPAWN_WEST))
 	{
 		_player()->dir.y = -1;
-		_player()->fov.x = PLAYER_DEFAULT_FOV;
+		_player()->fov.x = -PLAYER_DEFAULT_FOV;
 	}
 }
 

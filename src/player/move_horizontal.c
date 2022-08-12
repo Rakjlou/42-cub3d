@@ -6,7 +6,7 @@
 /*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/18 15:50:19 by nsierra-          #+#    #+#             */
-/*   Updated: 2022/08/12 15:42:21 by nsierra-         ###   ########.fr       */
+/*   Updated: 2022/08/12 16:03:56 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,14 +23,14 @@ void	player_move_left(void)
 	player = _player();
 	left_dir.x = -player->dir.y;
 	left_dir.y = player->dir.x;
-	dest_line = (int)(player->pos.x - left_dir.x * (player->speed / 2));
+	dest_line = (int)(player->pos.x + left_dir.x * (player->speed / 2));
 	dest_column = (int)player->pos.y;
 	if (!tile_collides_by_pos(dest_line, dest_column))
-		player->pos.x -= left_dir.x * (player->speed / 2);
+		player->pos.x += left_dir.x * (player->speed / 2);
 	dest_line = (int)player->pos.x;
-	dest_column = (int)(player->pos.y - left_dir.y * (player->speed / 2));
+	dest_column = (int)(player->pos.y + left_dir.y * (player->speed / 2));
 	if (!tile_collides_by_pos(dest_line, dest_column))
-		player->pos.y -= left_dir.y * (player->speed / 2);
+		player->pos.y += left_dir.y * (player->speed / 2);
 }
 
 void	player_move_right(void)
@@ -43,12 +43,12 @@ void	player_move_right(void)
 	player = _player();
 	right_dir.x = -player->dir.y;
 	right_dir.y = player->dir.x;
-	dest_line = (int)(player->pos.x + right_dir.x * (player->speed / 2));
+	dest_line = (int)(player->pos.x - right_dir.x * (player->speed / 2));
 	dest_column = (int)player->pos.y;
 	if (!tile_collides_by_pos(dest_line, dest_column))
-		player->pos.x += right_dir.x * (player->speed / 2);
+		player->pos.x -= right_dir.x * (player->speed / 2);
 	dest_line = (int)player->pos.x;
-	dest_column = (int)(player->pos.y + right_dir.y * (player->speed / 2));
+	dest_column = (int)(player->pos.y - right_dir.y * (player->speed / 2));
 	if (!tile_collides_by_pos(dest_line, dest_column))
-		player->pos.y += right_dir.y * (player->speed / 2);
+		player->pos.y -= right_dir.y * (player->speed / 2);
 }

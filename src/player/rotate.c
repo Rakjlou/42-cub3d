@@ -6,7 +6,7 @@
 /*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/18 15:50:19 by nsierra-          #+#    #+#             */
-/*   Updated: 2022/08/12 15:43:55 by nsierra-         ###   ########.fr       */
+/*   Updated: 2022/08/12 15:53:54 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,10 +34,10 @@ static void	player_rotate(double rot_speed)
 
 void	player_rotate_left(void)
 {
-	player_rotate(-_player()->rotation_speed);
+	player_rotate(_player()->rotation_speed);
 }
 
 void	player_rotate_right(void)
 {
-	player_rotate(_player()->rotation_speed);
+	player_rotate(-_player()->rotation_speed);
 }
