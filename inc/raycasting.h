@@ -6,7 +6,7 @@
 /*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/24 21:26:59 by nsierra-          #+#    #+#             */
-/*   Updated: 2022/08/12 12:10:00 by nsierra-         ###   ########.fr       */
+/*   Updated: 2022/08/12 15:37:08 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,38 +16,24 @@
 # include "vectors.h"
 # include "bool.h"
 
-/*
-struct s_raycasting
-{
-	double	cameraX;
-	double	rayDirX;
-	double	rayDirY;
-	int		mapX;
-	int		mapY;
-	double	deltaDistX;
-	double	deltaDistY;
-	double	sideDistX;
-	double	sideDistY;
-	int		stepX;
-	int		stepY;
-	int		hit;
-	int		side;
-	double	perpWallDist;
-	double	lineHeight;
-	double	drawStart;
-	double	drawEnd;
-	int		color;
-}	t_raycasting;
-*/
-
 typedef struct s_tile	t_tile;
+
+typedef enum e_wall_cardinal
+{
+	WALL_NORTH,
+	WALL_SOUTH,
+	WALL_EAST,
+	WALL_WEST,
+	WALL_CARDINAL_TOTAL
+}	t_wall_cardinal;
 
 typedef struct s_wall
 {
-	int	column;
-	int	line_height;
-	int	draw_start;
-	int	draw_end;
+	int				column;
+	int				line_height;
+	int				draw_start;
+	int				draw_end;
+	t_wall_cardinal	cardinal;
 }	t_wall;
 
 typedef struct s_ray
