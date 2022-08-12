@@ -6,15 +6,15 @@
 /*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/01 14:55:44 by nsierra-          #+#    #+#             */
-/*   Updated: 2022/08/11 23:34:59 by nsierra-         ###   ########.fr       */
+/*   Updated: 2022/08/12 11:24:12 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef WINDOW_H
 # define WINDOW_H
 
-# define WINDOW_HEIGHT 1080
-# define WINDOW_WIDTH 1080
+# define WINDOW_HEIGHT 1000
+# define WINDOW_WIDTH 1500
 # define WINDOW_TITLE "Macaque & Double Whooper"
 
 # define KEY_ESCAPE 65307

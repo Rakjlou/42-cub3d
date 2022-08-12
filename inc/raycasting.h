@@ -6,7 +6,7 @@
 /*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/24 21:26:59 by nsierra-          #+#    #+#             */
-/*   Updated: 2022/08/11 23:30:56 by nsierra-         ###   ########.fr       */
+/*   Updated: 2022/08/12 00:09:02 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,10 +44,10 @@ typedef struct s_tile	t_tile;
 
 typedef struct s_wall
 {
-	int		column;
-	int		line_height;
-	double	draw_start;
-	double	draw_end;
+	int	column;
+	int	line_height;
+	int	draw_start;
+	int	draw_end;
 }	t_wall;
 
 typedef struct s_ray
