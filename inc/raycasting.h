@@ -6,7 +6,7 @@
 /*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/24 21:26:59 by nsierra-          #+#    #+#             */
-/*   Updated: 2022/08/12 00:09:02 by nsierra-         ###   ########.fr       */
+/*   Updated: 2022/08/12 12:10:00 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,5 +62,12 @@ typedef struct s_ray
 	double		length;
 	int			side;
 }	t_ray;
+
+void	raycast_wall_from_wcolumn(t_wall *wall, int column);
+
+void	ray_init(t_ray *ray, int column);
+void	ray_compute_side_dist(t_ray *r);
+void	ray_compute_length(t_ray *ray);
+void	ray_hit(t_ray *ray);
 
 #endif

@@ -6,7 +6,7 @@
 #    By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/10 23:54:46 by nsierra-          #+#    #+#              #
-#    Updated: 2022/08/12 11:45:18 by nsierra-         ###   ########.fr        #
+#    Updated: 2022/08/12 12:09:12 by nsierra-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 # /!\ CAUTION /!\ IN PLAYER DEBUG, REMOVE DPRINTF CALLS
@@ -26,13 +26,14 @@ SRC = src/main.c \
 	src/input/init.c \
 	src/input/debug.c \
 	src/render/color.c \
+	src/render/render_walls.c \
+	src/render/texture.c \
 	src/render/window/init.c \
 	src/render/window/destroy.c \
 	src/render/window/refresh.c \
 	src/render/window/set_pixel.c \
 	src/render/window/set_callback.c \
 	src/render/window/set_key_callback.c \
-	src/render/texture.c \
 	src/player/init.c \
 	src/player/debug.c \
 	src/map/init.c \
@@ -57,6 +58,10 @@ SRC = src/main.c \
 	src/map/validation/tile_is.c \
 	src/vectors/add.c \
 	src/vectors/mult.c \
+	src/raycasting/compute.c \
+	src/raycasting/ray_init.c \
+	src/raycasting/ray_hit.c \
+	src/raycasting/raycast_wall_from_wcolumn.c \
 
 OBJ = $(SRC:.c=.o)
 DEPS = $(SRC:.c=.d)
