@@ -6,7 +6,7 @@
 /*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/18 15:50:19 by nsierra-          #+#    #+#             */
-/*   Updated: 2022/08/12 14:21:55 by nsierra-         ###   ########.fr       */
+/*   Updated: 2022/08/12 15:07:27 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,5 +57,4 @@ static void	set_initial_values(t_tile *tile)
 void	player_init(void)
 {
 	map_iterate(set_initial_values);
-	player_debug();
 }

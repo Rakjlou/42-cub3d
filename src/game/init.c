@@ -6,7 +6,7 @@
 /*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/18 15:50:19 by nsierra-          #+#    #+#             */
-/*   Updated: 2022/07/22 22:42:15 by nsierra-         ###   ########.fr       */
+/*   Updated: 2022/08/12 15:07:59 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,13 +19,11 @@
 
 static int	on_expose(void)
 {
-	ftfprintf(STDERR_FILENO, "expose_callback\n");
 	return (0);
 }
 
 static int	on_close(void)
 {
-	ftfprintf(STDERR_FILENO, "close_callback\n");
 	mlx_loop_end(_window()->mlx);
 	return (0);
 }
