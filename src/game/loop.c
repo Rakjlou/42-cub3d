@@ -6,7 +6,7 @@
 /*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/18 15:50:19 by nsierra-          #+#    #+#             */
-/*   Updated: 2022/08/12 19:02:45 by nsierra-         ###   ########.fr       */
+/*   Updated: 2022/08/12 19:15:36 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,40 +37,15 @@
 			0
 		)
 	);*/
-static t_color	alpha_blend(t_color background, t_color foreground)
-{
-	unsigned int		alpha;
-	unsigned int		inv_alpha;
-	t_color_channels	bg;
-	t_color_channels	fg;
 
-	color_channels(background, &bg);
-	color_channels(foreground, &fg);
-/*	printf("%3x %3x %3x %3x %x\n", bg.a, bg.r, bg.g, bg.b, background);
-	printf("%3x %3x %3x %3x %x\n", fg.a, fg.r, fg.g, fg.b, foreground);
-	printf("----\n");*/
-	alpha = 256 - fg.a;
-	inv_alpha = fg.a + 1;
-	return (
-		color_build(
-			(unsigned char)((alpha * fg.r + inv_alpha * bg.r) >> 8),
-			(unsigned char)((alpha * fg.g + inv_alpha * bg.g) >> 8),
-			(unsigned char)((alpha * fg.b + inv_alpha * bg.b) >> 8),
-			0xff
-		)
-	);
-}
 
 void	rect_set_pixel(t_rect *rect, int line, int column, t_color color)
 {
-	t_color	background;
-
 	if (line < 0 || line > WINDOW_HEIGHT
 		|| line < rect->start.x || line > rect->end.x
 		|| column < rect->start.y || column > rect->end.y)
 		return ;
-	background = *window_get_pixel(line, column);
-	window_set_pixel(line, column, alpha_blend(background, color));
+	window_set_pixel(line, column, color);
 }
 
 void	render_rect(t_rect *rect)

@@ -6,7 +6,7 @@
 /*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/01 14:53:03 by nsierra-          #+#    #+#             */
-/*   Updated: 2022/08/12 18:21:32 by nsierra-         ###   ########.fr       */
+/*   Updated: 2022/08/12 19:15:17 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,31 @@
 #include "mlx.h"
 #include <stdlib.h>
 
+static t_color	alpha_blend(t_color background, t_color foreground)
+{
+	unsigned int		alpha;
+	unsigned int		inv_alpha;
+	t_color_channels	bg;
+	t_color_channels	fg;
+
+	color_channels(background, &bg);
+	color_channels(foreground, &fg);
+	alpha = 256 - fg.a;
+	inv_alpha = fg.a + 1;
+	return (color_build((unsigned char)((alpha * fg.r + inv_alpha * bg.r) >> 8),
+		(unsigned char)((alpha * fg.g + inv_alpha * bg.g) >> 8),
+		(unsigned char)((alpha * fg.b + inv_alpha * bg.b) >> 8),
+		0
+	));
+}
+
 void	window_set_pixel(int line, int column, t_color color)
 {
 	t_color		*pixel;
 
 	pixel = window_get_pixel(line, column);
 	if (pixel != NULL)
-		*pixel = color;
+		*pixel = alpha_blend(*pixel, color);
 }
 
 t_color	*window_get_pixel(int line, int column)
