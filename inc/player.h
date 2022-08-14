@@ -6,7 +6,7 @@
 /*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/24 21:26:59 by nsierra-          #+#    #+#             */
-/*   Updated: 2022/08/13 00:34:19 by nsierra-         ###   ########.fr       */
+/*   Updated: 2022/08/13 20:14:19 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ typedef struct s_player
 	t_dvector	fov;
 	double		speed;
 	double		rotation_speed;
-	int			minimap_sight;
+	int			sight;
 }	t_player;
 
 t_player	*_player(void);

@@ -1,18 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   render.h                                           :+:      :+:    :+:   */
+/*   get.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/24 21:26:59 by nsierra-          #+#    #+#             */
-/*   Updated: 2022/08/13 20:22:58 by nsierra-         ###   ########.fr       */
+/*   Created: 2022/07/01 14:53:03 by nsierra-          #+#    #+#             */
+/*   Updated: 2022/08/13 20:12:10 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef RENDER_H
-# define RENDER_H
+#include "render/rect.h"
 
-void	render_colliders(void);
-
-#endif
+void	rect_get_center(t_rect *rect, t_ivector *result)
+{
+	result->x = rect->start.x + ((rect->end.x - rect->start.x) / 2);
+	result->y = rect->start.y + ((rect->end.y - rect->start.y) / 2);
+}

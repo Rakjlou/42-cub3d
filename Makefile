@@ -6,7 +6,7 @@
 #    By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/10 23:54:46 by nsierra-          #+#    #+#              #
-#    Updated: 2022/08/12 18:19:00 by nsierra-         ###   ########.fr        #
+#    Updated: 2022/08/13 20:30:43 by nsierra-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 # /!\ CAUTION /!\ IN PLAYER DEBUG, REMOVE DPRINTF CALLS
@@ -26,7 +26,8 @@ SRC = src/main.c \
 	src/input/init.c \
 	src/input/debug.c \
 	src/render/color.c \
-	src/render/render_walls.c \
+	src/render/circle.c \
+	src/render/render_colliders.c \
 	src/render/texture.c \
 	src/render/window/init.c \
 	src/render/window/destroy.c \
@@ -34,6 +35,9 @@ SRC = src/main.c \
 	src/render/window/pixel.c \
 	src/render/window/set_callback.c \
 	src/render/window/set_key_callback.c \
+	src/render/rect/get.c \
+	src/render/rect/init.c \
+	src/render/rect/render.c \
 	src/player/init.c \
 	src/player/debug.c \
 	src/player/move_horizontal.c \
@@ -60,6 +64,8 @@ SRC = src/main.c \
 	src/map/validation/check_metadata_helpers.c \
 	src/map/validation/check_walls.c \
 	src/map/validation/tile_is.c \
+	src/map/minimap/render.c \
+	src/map/minimap/render_colliders.c \
 	src/vectors/add.c \
 	src/vectors/mult.c \
 	src/raycasting/compute.c \

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   render_walls.c                                     :+:      :+:    :+:   */
+/*   render_colliders.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/01 14:53:03 by nsierra-          #+#    #+#             */
-/*   Updated: 2022/08/12 18:53:26 by nsierra-         ###   ########.fr       */
+/*   Updated: 2022/08/13 20:22:46 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ static void	render_pixel_column(t_wall *wall)
 	}
 }
 
-void	render_walls(void)
+void	render_colliders(void)
 {
 	t_wall	wall;
 	int		column;

@@ -6,7 +6,7 @@
 /*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/01 14:55:44 by nsierra-          #+#    #+#             */
-/*   Updated: 2022/08/12 17:56:50 by nsierra-         ###   ########.fr       */
+/*   Updated: 2022/08/13 20:05:31 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,11 @@
 # define COLOR_H
 
 typedef int	t_color;
+
+enum e_useful_colors
+{
+	COLOR_TRANSPARENT = 0xFF000000
+};
 
 typedef enum e_color_component
 {
