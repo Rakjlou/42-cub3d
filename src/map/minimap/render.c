@@ -6,7 +6,7 @@
 /*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/18 15:50:19 by nsierra-          #+#    #+#             */
-/*   Updated: 2022/08/13 20:33:30 by nsierra-         ###   ########.fr       */
+/*   Updated: 2022/08/13 21:05:23 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ static void	minimap_setup(t_minimap *mmap)
 	mmap->size = (int)(ft_min(WINDOW_WIDTH, WINDOW_HEIGHT) * 0.25);
 	start_y = WINDOW_WIDTH - mmap->size - MINIMAP_OFFSET;
 	rect_square_init(&mmap->zone, MINIMAP_OFFSET, start_y, mmap->size);
-	rect_color_init(&mmap->zone, COLOR_TRANSPARENT, COLOR_TRANSPARENT);
+	rect_color_init(&mmap->zone, COLOR_TRANSPARENT, COLOR_RED);
 }
 
 void	minimap_render(void)

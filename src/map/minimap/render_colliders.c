@@ -6,7 +6,7 @@
 /*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/18 15:50:19 by nsierra-          #+#    #+#             */
-/*   Updated: 2022/08/13 20:58:37 by nsierra-         ###   ########.fr       */
+/*   Updated: 2022/08/13 21:17:19 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,8 @@ static void	minimap_render_collider(
 	t_dvector	remainder;
 
 	player = _player();
-	remainder.x = modf(player->pos.x, &tmp) - PLAYER_START_POS_OFFSET - 0.2;
-	remainder.y = modf(player->pos.y, &tmp) - PLAYER_START_POS_OFFSET - 0.2;
+	remainder.x = modf(player->pos.x, &tmp) - PLAYER_START_POS_OFFSET - 0.1;
+	remainder.y = modf(player->pos.y, &tmp) - PLAYER_START_POS_OFFSET - 0.1;
 	rect_color_init(&collider, MINIMAP_COLLIDER_COLOR, MINIMAP_COLLIDER_COLOR);
 	rect_square_init(
 		&collider,
@@ -44,6 +44,9 @@ static void	minimap_render_collider(
 }
 
 /*
+** Line/index.x and column/index.y are set to -1 and iterate +1 because we want
+** to print the next partial cell in order to have a fluid minimap.
+**
 ** csize stands for cell_size
 */
 void	minimap_render_colliders(t_minimap *mmap)
@@ -54,15 +57,15 @@ void	minimap_render_colliders(t_minimap *mmap)
 	t_ivector	index;
 	t_player	*player;
 
-	index.x = 0;
 	player = _player();
-	line = (int)player->pos.x - player->sight;
+	index.x = -1;
+	line = (int)player->pos.x - player->sight - 1;
 	csize = mmap->zone.size.x / (player->sight * 2 + 1);
-	while (line <= (int)player->pos.x + player->sight)
+	while (line <= (int)player->pos.x + player->sight + 1)
 	{
-		column = (int)player->pos.y - player->sight;
-		index.y = 0;
-		while (column <= (int)player->pos.y + player->sight)
+		index.y = -1;
+		column = (int)player->pos.y - player->sight - 1;
+		while (column <= (int)player->pos.y + player->sight + 1)
 		{
 			if (tile_collides_by_pos(line, column))
 				minimap_render_collider(mmap, index.x, index.y, csize);

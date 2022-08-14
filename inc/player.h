@@ -6,7 +6,7 @@
 /*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/24 21:26:59 by nsierra-          #+#    #+#             */
-/*   Updated: 2022/08/13 20:39:09 by nsierra-         ###   ########.fr       */
+/*   Updated: 2022/08/13 21:02:24 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 # define PLAYER_DEFAULT_FOV 0.66
 # define PLAYER_DEFAULT_SPEED 0.05
 # define PLAYER_DEFAULT_ROTATION_SPEED 0.05
-# define PLAYER_DEFAULT_MINIMAP_SIGHT 5
+# define PLAYER_DEFAULT_MINIMAP_SIGHT 6
 
 # include "vectors.h"
 
