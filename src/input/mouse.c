@@ -1,38 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   input.h                                            :+:      :+:    :+:   */
+/*   mouse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/24 21:26:59 by nsierra-          #+#    #+#             */
-/*   Updated: 2022/08/14 19:11:14 by nsierra-         ###   ########.fr       */
+/*   Created: 2022/01/18 15:50:19 by nsierra-          #+#    #+#             */
+/*   Updated: 2022/08/14 19:11:17 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef INPUT_H
-# define INPUT_H
+#include "render/window.h"
+#include "vectors.h"
+#include "mlx.h"
 
-# include "bool.h"
-
-typedef struct s_ivector	t_ivector;
-
-typedef struct s_input
+void	input_get_mouse_pos(t_ivector *pos)
 {
-	t_bool	forward;
-	t_bool	left;
-	t_bool	right;
-	t_bool	backward;
-	t_bool	rotate_left;
-	t_bool	rotate_right;
-}	t_input;
+	t_window	*window;
 
-t_input	*_input(void);
+	window = _window();
+	mlx_mouse_get_pos(window->mlx, window->core, &pos->y, &pos->x);
+}
 
-void	input_init(void);
-void	input_debug(void);
+void	input_mouse_move(int pos_x, int pos_y)
+{
+	t_window	*window;
 
-void	input_get_mouse_pos(t_ivector *pos);
-void	input_mouse_move(int pos_x, int pos_y);
-
-#endif
+	window = _window();
+	mlx_mouse_move(window->mlx, window->core, pos_y, pos_x);
+}

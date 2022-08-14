@@ -6,7 +6,7 @@
 #    By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/10 23:54:46 by nsierra-          #+#    #+#              #
-#    Updated: 2022/08/13 20:30:43 by nsierra-         ###   ########.fr        #
+#    Updated: 2022/08/14 19:08:58 by nsierra-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 # /!\ CAUTION /!\ IN PLAYER DEBUG, REMOVE DPRINTF CALLS
@@ -25,6 +25,7 @@ SRC = src/main.c \
 	src/game/loop.c \
 	src/input/init.c \
 	src/input/debug.c \
+	src/input/mouse.c \
 	src/render/color.c \
 	src/render/circle.c \
 	src/render/render_colliders.c \

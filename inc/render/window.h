@@ -6,7 +6,7 @@
 /*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/01 14:55:44 by nsierra-          #+#    #+#             */
-/*   Updated: 2022/08/12 20:31:09 by nsierra-         ###   ########.fr       */
+/*   Updated: 2022/08/14 18:45:30 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,19 +26,21 @@
 # define KEY_ARROW_RIGHT 65363
 
 # include "bool.h"
+# include "vectors.h"
 # include "render/color.h"
 
 typedef struct s_window
 {
-	char	*title;
-	void	*core;
-	void	*mlx;
-	void	*buffer_image;
-	char	*buffer;
-	int		depth;
-	int		line_size;
-	int		endian;
-	t_bool	enable_transparency;
+	char		*title;
+	void		*core;
+	void		*mlx;
+	void		*buffer_image;
+	char		*buffer;
+	int			depth;
+	int			line_size;
+	int			endian;
+	t_ivector	center;
+	t_bool		enable_transparency;
 }	t_window;
 
 t_window	*_window(void);
