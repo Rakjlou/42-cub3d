@@ -6,7 +6,7 @@
 /*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/24 21:26:59 by nsierra-          #+#    #+#             */
-/*   Updated: 2022/08/13 20:32:25 by nsierra-         ###   ########.fr       */
+/*   Updated: 2022/08/13 20:44:14 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ void	rect_color_init(t_rect *rect, t_color fill_color, t_color border_color);
 void	rect_get_center(t_rect *rect, t_ivector *result);
 
 void	rect_render(t_rect *rect);
+void	rect_render_in_rect(t_rect *parent, t_rect *to_draw);
 void	rect_render_pixel(t_rect *rect, int line, int column, t_color color);
 
 #endif

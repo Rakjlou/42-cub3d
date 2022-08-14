@@ -6,7 +6,7 @@
 /*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/01 14:53:03 by nsierra-          #+#    #+#             */
-/*   Updated: 2022/08/13 20:29:13 by nsierra-         ###   ########.fr       */
+/*   Updated: 2022/08/13 20:46:16 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,29 @@ void	rect_render(t_rect *rect)
 				rect_render_pixel(rect, line, column, rect->border_color);
 			else
 				rect_render_pixel(rect, line, column, rect->fill_color);
+			++column;
+		}
+		++line;
+	}
+}
+
+void	rect_render_in_rect(t_rect *parent, t_rect *to_draw)
+{
+	int	line;
+	int	column;
+
+	line = to_draw->start.x;
+	while (line <= to_draw->end.x)
+	{
+		column = to_draw->start.y;
+		while (column <= to_draw->end.y)
+		{
+			if (line == to_draw->start.x || line == to_draw->end.x)
+				rect_render_pixel(parent, line, column, to_draw->border_color);
+			else if (column == to_draw->start.y || column == to_draw->end.y)
+				rect_render_pixel(parent, line, column, to_draw->border_color);
+			else
+				rect_render_pixel(parent, line, column, to_draw->fill_color);
 			++column;
 		}
 		++line;
