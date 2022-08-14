@@ -6,7 +6,7 @@
 /*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/24 21:26:59 by nsierra-          #+#    #+#             */
-/*   Updated: 2022/08/13 21:02:24 by nsierra-         ###   ########.fr       */
+/*   Updated: 2022/08/13 21:47:33 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,10 +36,10 @@ t_player	*_player(void);
 void		player_init(void);
 void		player_debug(void);
 void		player_update(void);
-void		player_move_forward(void);
-void		player_move_backward(void);
 void		player_move_left(void);
 void		player_move_right(void);
+void		player_move_forward(void);
+void		player_move_backward(void);
 void		player_rotate_left(void);
 void		player_rotate_right(void);
 
