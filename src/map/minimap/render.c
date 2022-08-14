@@ -6,7 +6,7 @@
 /*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/18 15:50:19 by nsierra-          #+#    #+#             */
-/*   Updated: 2022/08/14 13:17:13 by nsierra-         ###   ########.fr       */
+/*   Updated: 2022/08/14 13:32:32 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,12 @@
 #include "player.h"
 #include "libft.h"
 
-static void	minimap_render_dot(t_minimap *mmap)
+static void	minimap_render_player(t_minimap *mmap)
 {
 	t_circle	dot;
 
 	rect_get_center(&mmap->zone, &dot.origin);
-	dot.radius = 2;
+	dot.radius = 4;
 	dot.fill_color = MINIMAP_PLAYER_DOT_COLOR;
 	dot.border_color = MINIMAP_PLAYER_DOT_COLOR;
 	render_circle(&dot);
@@ -41,15 +41,15 @@ static void	minimap_setup(t_minimap *mmap)
 	mmap->tile_size = mmap->zone.size.x / (_player()->sight * 2 + 1);
 }
 
-static void	draw_line(t_minimap *mmap)
+static void	minimap_render_direction(t_minimap *mmap)
 {
 	t_player	*player;
 	t_circle	dot;
 
 	player = _player();
-	dot.radius = 2;
-	dot.fill_color = MINIMAP_PLAYER_SIGHT_COLOR;
-	dot.border_color = MINIMAP_PLAYER_SIGHT_COLOR;
+	dot.radius = 4;
+	dot.fill_color = MINIMAP_PLAYER_DIR_COLOR;
+	dot.border_color = MINIMAP_PLAYER_DIR_COLOR;
 	mmap->center.x = mmap->center.x;
 	mmap->center.y = mmap->center.y;
 	dot.origin.x = mmap->center.x + player->dir.x * (mmap->tile_size - 2);
@@ -66,7 +66,7 @@ void	minimap_render(void)
 	window->enable_transparency = TRUE;
 	minimap_setup(&mmap);
 	minimap_render_colliders(&mmap);
-	minimap_render_dot(&mmap);
-	draw_line(&mmap);
+	minimap_render_player(&mmap);
+	minimap_render_direction(&mmap);
 	window->enable_transparency = FALSE;
 }
