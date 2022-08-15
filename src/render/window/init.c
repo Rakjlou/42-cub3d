@@ -6,7 +6,7 @@
 /*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/01 14:53:03 by nsierra-          #+#    #+#             */
-/*   Updated: 2022/08/12 11:23:58 by nsierra-         ###   ########.fr       */
+/*   Updated: 2022/08/14 19:31:29 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,16 +44,20 @@ static t_bool	generate_buffer(void)
 
 t_bool	window_init(void)
 {
-	t_window	*window;
+	t_window	*win;
 
-	window = _window();
-	window->mlx = mlx_init();
-	if (window->mlx == NULL)
+	win = _window();
+	win->mlx = mlx_init();
+	if (win->mlx == NULL)
 		return (fterr_set_error(E_MLX_FAILURE), FALSE);
-	window->core = mlx_new_window(
-			window->mlx,
+	win->core = mlx_new_window(
+			win->mlx,
 			WINDOW_WIDTH, WINDOW_HEIGHT, WINDOW_TITLE);
-	if (window->core == NULL)
+	if (win->core == NULL)
 		return (fterr_set_error(E_MLX_FAILURE), FALSE);
+	win->center.x = WINDOW_HEIGHT / 2;
+	win->center.y = WINDOW_WIDTH / 2;
+	mlx_mouse_hide(win->mlx, win->core);
+	mlx_mouse_move(win->mlx, win->core, win->center.y, win->center.x);
 	return (load_wall_textures() && generate_buffer());
 }

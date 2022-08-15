@@ -6,7 +6,7 @@
 /*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/01 14:53:03 by nsierra-          #+#    #+#             */
-/*   Updated: 2022/08/11 22:43:06 by nsierra-         ###   ########.fr       */
+/*   Updated: 2022/08/14 18:44:45 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,11 @@
 void	window_set_mouse_click_callback(int (*callback)(int, int, int))
 {
 	mlx_mouse_hook(_window()->core, callback, NULL);
+}
+
+void	window_set_mouse_move_callback(int (*callback)(int, int))
+{
+	mlx_hook(_window()->core, 6, 0x40, callback, NULL);
 }
 
 void	window_set_expose_callback(int (*callback)(void))
