@@ -6,13 +6,13 @@
 /*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/18 15:50:19 by nsierra-          #+#    #+#             */
-/*   Updated: 2022/08/12 15:40:16 by nsierra-         ###   ########.fr       */
+/*   Updated: 2022/08/15 15:22:09 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "render/window.h"
 #include "raycasting.h"
-#include <stdio.h>
+#include "libft.h"
 
 static void	compute_wall(t_wall *wall, t_ray *ray, int column)
 {
@@ -43,4 +43,5 @@ void	raycast_wall_from_wcolumn(t_wall *wall, int column)
 	ray_hit(&ray);
 	ray_compute_length(&ray);
 	compute_wall(wall, &ray, column);
+	ft_memcpy(&wall->ray, &ray, sizeof(t_ray));
 }

@@ -6,7 +6,7 @@
 /*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/24 21:26:59 by nsierra-          #+#    #+#             */
-/*   Updated: 2022/08/12 15:37:08 by nsierra-         ###   ########.fr       */
+/*   Updated: 2022/08/15 15:22:54 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,15 +27,6 @@ typedef enum e_wall_cardinal
 	WALL_CARDINAL_TOTAL
 }	t_wall_cardinal;
 
-typedef struct s_wall
-{
-	int				column;
-	int				line_height;
-	int				draw_start;
-	int				draw_end;
-	t_wall_cardinal	cardinal;
-}	t_wall;
-
 typedef struct s_ray
 {
 	t_bool		hit;
@@ -48,6 +39,16 @@ typedef struct s_ray
 	double		length;
 	int			side;
 }	t_ray;
+
+typedef struct s_wall
+{
+	int				column;
+	int				line_height;
+	int				draw_start;
+	int				draw_end;
+	t_ray			ray;
+	t_wall_cardinal	cardinal;
+}	t_wall;
 
 void	raycast_wall_from_wcolumn(t_wall *wall, int column);
 
