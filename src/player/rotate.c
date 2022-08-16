@@ -6,14 +6,14 @@
 /*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/18 15:50:19 by nsierra-          #+#    #+#             */
-/*   Updated: 2022/08/12 15:53:54 by nsierra-         ###   ########.fr       */
+/*   Updated: 2022/08/15 22:21:58 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "player.h"
 #include <math.h>
 
-static void	player_rotate(double rot_speed)
+void	player_rotate(double rot_speed)
 {
 	double		old_dir_x;
 	double		old_fov_x;

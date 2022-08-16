@@ -6,7 +6,7 @@
 #    By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/10 23:54:46 by nsierra-          #+#    #+#              #
-#    Updated: 2022/08/14 19:08:58 by nsierra-         ###   ########.fr        #
+#    Updated: 2022/08/15 22:38:08 by nsierra-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 # /!\ CAUTION /!\ IN PLAYER DEBUG, REMOVE DPRINTF CALLS
@@ -17,12 +17,11 @@ VALGRIND = valgrind --leak-check=full --track-origins=yes --show-leak-kinds=all 
 TESTMAP = test.cub
 #TESTMAP = fail/fail-wall-13.cub
 
-SRC = src/main.c \
+SRC_COMMON = src/main.c \
 	src/errors/register.c \
 	src/game/singleton.c \
 	src/game/init.c \
 	src/game/destroy.c \
-	src/game/loop.c \
 	src/input/init.c \
 	src/input/debug.c \
 	src/input/mouse.c \
@@ -44,7 +43,7 @@ SRC = src/main.c \
 	src/player/move_horizontal.c \
 	src/player/move_vertical.c \
 	src/player/rotate.c \
-	src/player/update.c \
+	src/player/update_movement.c \
 	src/map/init.c \
 	src/map/parse.c \
 	src/map/destroy.c \
@@ -74,10 +73,19 @@ SRC = src/main.c \
 	src/raycasting/ray_hit.c \
 	src/raycasting/raycast_wall_from_wcolumn.c \
 
+SRC_2BAZ = src/game/loop.c \
+	src/player/update.c \
 
+SRC_BONUS = $(SRC_2BAZ:.c=_bonus.c)
 
-OBJ = $(SRC:.c=.o)
-DEPS = $(SRC:.c=.d)
+OBJ_COMMON = $(SRC_COMMON:.c=.o)
+DEPS_COMMON = $(SRC_COMMON:.c=.d)
+
+OBJ_2BAZ = $(OBJ_COMMON) $(SRC_2BAZ:.c=.o)
+DEPS_2BAZ = $(DEPS_COMMON) $(SRC_2BAZ:.c=.d)
+
+OBJ_BONUS = $(OBJ_COMMON) $(SRC_BONUS:.c=.o)
+DEPS_BONUS = $(DEPS_COMMON) $(SRC_BONUS:.c=.d)
 
 CC = cc
 
@@ -98,8 +106,13 @@ LDLIBS = -lft
 
 all: libft mlx $(NAME)
 
-$(NAME): $(LIBFT_DIR)/libft.a $(MLX_DIR)/libmlx.a $(OBJ)
-	$(CC) $(OBJ) -o $@ $(LDFLAGS) $(LDLIBS)
+$(NAME): $(LIBFT_DIR)/libft.a $(MLX_DIR)/libmlx.a $(OBJ_2BAZ)
+	$(CC) $(OBJ_2BAZ) -o $@ $(LDFLAGS) $(LDLIBS)
+
+$(NAME)2: $(LIBFT_DIR)/libft.a $(MLX_DIR)/libmlx.a $(OBJ_BONUS)
+	$(CC) $(OBJ_BONUS) -o $(NAME) $(LDFLAGS) $(LDLIBS)
+
+bonus: fclean libft mlx $(NAME)2
 
 libft:
 	make --no-print-directory -C $(LIBFT_DIR)
@@ -110,7 +123,7 @@ mlx:
 clean:
 	make --no-print-directory -C $(LIBFT_DIR) clean
 	make --no-print-directory -C $(MLX_DIR) clean
-	rm -f $(OBJ) $(DEPS)
+	rm -f $(OBJ_2BAZ) $(DEPS)
 
 fclean: clean
 	make --no-print-directory -C $(LIBFT_DIR) fclean
@@ -171,4 +184,4 @@ gdb: all
 
 .PHONY: clean fclean re libft mlx
 
--include $(OBJ:.o=.d)
+-include $(OBJ_2BAZ:.o=.d)

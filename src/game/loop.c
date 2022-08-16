@@ -6,7 +6,7 @@
 /*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/18 15:50:19 by nsierra-          #+#    #+#             */
-/*   Updated: 2022/08/14 19:05:06 by nsierra-         ###   ########.fr       */
+/*   Updated: 2022/08/15 22:26:37 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@ int	game_loop_callback(void)
 {
 	player_update();
 	render_colliders();
-	minimap_render();
 	window_refresh();
 	return (0);
 }
