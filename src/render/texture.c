@@ -6,15 +6,29 @@
 /*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/01 14:53:03 by nsierra-          #+#    #+#             */
-/*   Updated: 2022/07/21 19:59:01 by nsierra-         ###   ########.fr       */
+/*   Updated: 2022/08/15 21:55:31 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 #include "errors.h"
+#include "render/texture.h"
 #include "render/window.h"
-#include "map/map.h"
 #include "mlx.h"
+
+t_color	*texture_get_pixel(t_texture *texture, int line, int column)
+{
+	int			*pixel;
+	int			index;
+	int			max;
+
+	index = line * texture->line_size + column * sizeof(int);
+	max = texture->height * texture->line_size + texture->width * sizeof(int);
+	pixel = (int *)(texture->buffer + index);
+	if (index < max)
+		return (pixel);
+	return (NULL);
+}
 
 t_bool	texture_hydrate(t_texture *texture)
 {

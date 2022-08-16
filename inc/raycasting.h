@@ -6,13 +6,14 @@
 /*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/24 21:26:59 by nsierra-          #+#    #+#             */
-/*   Updated: 2022/08/15 15:22:54 by nsierra-         ###   ########.fr       */
+/*   Updated: 2022/08/15 21:55:30 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef RAYCASTING_H
 # define RAYCASTING_H
 
+# include "render/texture.h"
 # include "vectors.h"
 # include "bool.h"
 
@@ -46,7 +47,11 @@ typedef struct s_wall
 	int				line_height;
 	int				draw_start;
 	int				draw_end;
+	int				texture_column;
+	double			texture_step;
+	double			tex_pos;
 	t_ray			ray;
+	t_texture		*texture;
 	t_wall_cardinal	cardinal;
 }	t_wall;
 

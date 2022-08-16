@@ -6,13 +6,48 @@
 /*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/18 15:50:19 by nsierra-          #+#    #+#             */
-/*   Updated: 2022/08/15 15:22:09 by nsierra-         ###   ########.fr       */
+/*   Updated: 2022/08/15 21:56:17 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "render/window.h"
 #include "raycasting.h"
 #include "libft.h"
+
+#include "map/map.h"
+#include "render/texture.h"
+#include "player.h"
+#include <math.h>
+
+static void	wall_hydrate_texture(t_wall *wall)
+{
+	t_map		*map;
+	t_texture	*texture[WALL_CARDINAL_TOTAL];
+
+	map = _map();
+	texture[WALL_NORTH] = &map->texture_north;
+	texture[WALL_SOUTH] = &map->texture_south;
+	texture[WALL_EAST] = &map->texture_east;
+	texture[WALL_WEST] = &map->texture_west;
+	wall->texture = texture[wall->cardinal];
+}
+
+static void	compute_wall_texture(t_wall *wall, t_ray *ray)
+{
+	t_player	*player;
+	double		wall_col;
+
+	player = _player();
+	wall_col = player->pos.y + ray->length * ray->dir.y;
+	if (ray->side != 0)
+		wall_col = player->pos.x + ray->length * ray->dir.x;
+	wall_col -= floor(wall_col);
+	wall_hydrate_texture(wall);
+	wall->texture_column = (int)(wall_col * (double)wall->texture->height);
+	wall->texture_step = 1.0 * wall->texture->height / wall->line_height;
+	wall->tex_pos = (wall->draw_start - WINDOW_HEIGHT / 2
+			+ wall->line_height / 2) * wall->texture_step;
+}
 
 static void	compute_wall(t_wall *wall, t_ray *ray, int column)
 {
@@ -32,6 +67,7 @@ static void	compute_wall(t_wall *wall, t_ray *ray, int column)
 		wall->cardinal = WALL_EAST;
 	else if (ray->side == 1 && ray->step_dir.y == -1)
 		wall->cardinal = WALL_WEST;
+	compute_wall_texture(wall, ray);
 }
 
 void	raycast_wall_from_wcolumn(t_wall *wall, int column)
