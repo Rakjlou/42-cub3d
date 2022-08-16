@@ -6,7 +6,7 @@
 #    By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/10 23:54:46 by nsierra-          #+#    #+#              #
-#    Updated: 2022/08/15 22:38:08 by nsierra-         ###   ########.fr        #
+#    Updated: 2022/08/15 23:31:18 by nsierra-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 # /!\ CAUTION /!\ IN PLAYER DEBUG, REMOVE DPRINTF CALLS
@@ -87,6 +87,9 @@ DEPS_2BAZ = $(DEPS_COMMON) $(SRC_2BAZ:.c=.d)
 OBJ_BONUS = $(OBJ_COMMON) $(SRC_BONUS:.c=.o)
 DEPS_BONUS = $(DEPS_COMMON) $(SRC_BONUS:.c=.d)
 
+OBJ_ALL = $(OBJ_COMMON) $(SRC_2BAZ:.c=.o) $(SRC_BONUS:.c=.o)
+DEPS_ALL = $(DEPS_COMMON) $(SRC_2BAZ:.c=.d) $(SRC_BONUS:.c=.d)
+
 CC = cc
 
 LIBFT_DIR = libft
@@ -109,10 +112,10 @@ all: libft mlx $(NAME)
 $(NAME): $(LIBFT_DIR)/libft.a $(MLX_DIR)/libmlx.a $(OBJ_2BAZ)
 	$(CC) $(OBJ_2BAZ) -o $@ $(LDFLAGS) $(LDLIBS)
 
-$(NAME)2: $(LIBFT_DIR)/libft.a $(MLX_DIR)/libmlx.a $(OBJ_BONUS)
+name_bonus: $(LIBFT_DIR)/libft.a $(MLX_DIR)/libmlx.a $(OBJ_BONUS)
 	$(CC) $(OBJ_BONUS) -o $(NAME) $(LDFLAGS) $(LDLIBS)
 
-bonus: fclean libft mlx $(NAME)2
+bonus: eclean libft mlx name_bonus
 
 libft:
 	make --no-print-directory -C $(LIBFT_DIR)
@@ -123,10 +126,13 @@ mlx:
 clean:
 	make --no-print-directory -C $(LIBFT_DIR) clean
 	make --no-print-directory -C $(MLX_DIR) clean
-	rm -f $(OBJ_2BAZ) $(DEPS)
+	rm -f $(OBJ_ALL) $(DEPS_ALL)
 
-fclean: clean
+fclean: clean eclean
 	make --no-print-directory -C $(LIBFT_DIR) fclean
+	rm -f $(NAME)
+
+eclean:
 	rm -f $(NAME)
 
 re: fclean
@@ -184,4 +190,4 @@ gdb: all
 
 .PHONY: clean fclean re libft mlx
 
--include $(OBJ_2BAZ:.o=.d)
+-include $(OBJ_ALL:.o=.d)
