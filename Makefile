@@ -6,7 +6,7 @@
 #    By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/10 23:54:46 by nsierra-          #+#    #+#              #
-#    Updated: 2022/08/15 23:31:18 by nsierra-         ###   ########.fr        #
+#    Updated: 2022/08/15 23:36:01 by nsierra-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 # /!\ CAUTION /!\ IN PLAYER DEBUG, REMOVE DPRINTF CALLS
@@ -73,22 +73,22 @@ SRC_COMMON = src/main.c \
 	src/raycasting/ray_hit.c \
 	src/raycasting/raycast_wall_from_wcolumn.c \
 
-SRC_2BAZ = src/game/loop.c \
+SRC_MANDATORY = src/game/loop.c \
 	src/player/update.c \
 
-SRC_BONUS = $(SRC_2BAZ:.c=_bonus.c)
+SRC_BONUS = $(SRC_MANDATORY:.c=_bonus.c)
 
 OBJ_COMMON = $(SRC_COMMON:.c=.o)
 DEPS_COMMON = $(SRC_COMMON:.c=.d)
 
-OBJ_2BAZ = $(OBJ_COMMON) $(SRC_2BAZ:.c=.o)
-DEPS_2BAZ = $(DEPS_COMMON) $(SRC_2BAZ:.c=.d)
+OBJ_MANDATORY = $(OBJ_COMMON) $(SRC_MANDATORY:.c=.o)
+DEPS_MANDATORY = $(DEPS_COMMON) $(SRC_MANDATORY:.c=.d)
 
 OBJ_BONUS = $(OBJ_COMMON) $(SRC_BONUS:.c=.o)
 DEPS_BONUS = $(DEPS_COMMON) $(SRC_BONUS:.c=.d)
 
-OBJ_ALL = $(OBJ_COMMON) $(SRC_2BAZ:.c=.o) $(SRC_BONUS:.c=.o)
-DEPS_ALL = $(DEPS_COMMON) $(SRC_2BAZ:.c=.d) $(SRC_BONUS:.c=.d)
+OBJ_ALL = $(OBJ_COMMON) $(SRC_MANDATORY:.c=.o) $(SRC_BONUS:.c=.o)
+DEPS_ALL = $(DEPS_COMMON) $(SRC_MANDATORY:.c=.d) $(SRC_BONUS:.c=.d)
 
 CC = cc
 
@@ -109,13 +109,13 @@ LDLIBS = -lft
 
 all: libft mlx $(NAME)
 
-$(NAME): $(LIBFT_DIR)/libft.a $(MLX_DIR)/libmlx.a $(OBJ_2BAZ)
-	$(CC) $(OBJ_2BAZ) -o $@ $(LDFLAGS) $(LDLIBS)
+$(NAME): $(LIBFT_DIR)/libft.a $(MLX_DIR)/libmlx.a $(OBJ_MANDATORY)
+	$(CC) $(OBJ_MANDATORY) -o $@ $(LDFLAGS) $(LDLIBS)
 
-name_bonus: $(LIBFT_DIR)/libft.a $(MLX_DIR)/libmlx.a $(OBJ_BONUS)
-	$(CC) $(OBJ_BONUS) -o $(NAME) $(LDFLAGS) $(LDLIBS)
+$(NAME)_bonus: $(LIBFT_DIR)/libft.a $(MLX_DIR)/libmlx.a $(OBJ_BONUS)
+	$(CC) $(OBJ_BONUS) -o $(NAME)_bonus $(LDFLAGS) $(LDLIBS)
 
-bonus: eclean libft mlx name_bonus
+bonus: libft mlx $(NAME)_bonus
 
 libft:
 	make --no-print-directory -C $(LIBFT_DIR)
@@ -128,11 +128,8 @@ clean:
 	make --no-print-directory -C $(MLX_DIR) clean
 	rm -f $(OBJ_ALL) $(DEPS_ALL)
 
-fclean: clean eclean
+fclean: clean
 	make --no-print-directory -C $(LIBFT_DIR) fclean
-	rm -f $(NAME)
-
-eclean:
 	rm -f $(NAME)
 
 re: fclean

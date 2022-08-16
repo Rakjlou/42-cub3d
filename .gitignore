@@ -2,5 +2,5 @@
 *.d
 *.a
 *.sublime*
-cub3d
+cub3d*
 spritesheet/
