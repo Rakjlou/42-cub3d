@@ -6,7 +6,7 @@
 /*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/01 14:53:03 by nsierra-          #+#    #+#             */
-/*   Updated: 2022/08/15 21:39:17 by nsierra-         ###   ########.fr       */
+/*   Updated: 2022/08/15 22:16:24 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,6 @@ t_bool	window_init(void)
 		return (fterr_set_error(E_MLX_FAILURE), FALSE);
 	win->center.x = WINDOW_HEIGHT / 2;
 	win->center.y = WINDOW_WIDTH / 2;
-	mlx_mouse_hide(win->mlx, win->core);
 	mlx_mouse_move(win->mlx, win->core, win->center.y, win->center.x);
 	return (load_wall_textures() && generate_buffer());
 }
