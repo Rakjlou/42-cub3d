@@ -6,7 +6,7 @@
 /*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/18 15:50:19 by nsierra-          #+#    #+#             */
-/*   Updated: 2022/08/12 16:10:27 by nsierra-         ###   ########.fr       */
+/*   Updated: 2022/08/18 20:08:22 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,5 +20,5 @@ t_bool	tile_collides_by_pos(int line, int column)
 	tile = map_get_tile(line, column);
 	if (tile == NULL)
 		return (TRUE);
-	return (tile_is_wall(tile));
+	return (tile_is_wall(tile) || tile->type == 'D');
 }

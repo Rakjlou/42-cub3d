@@ -6,7 +6,7 @@
 /*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/18 15:50:19 by nsierra-          #+#    #+#             */
-/*   Updated: 2022/08/15 21:56:17 by nsierra-         ###   ########.fr       */
+/*   Updated: 2022/08/18 21:14:15 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ static void	compute_wall_texture(t_wall *wall, t_ray *ray)
 		wall_col = player->pos.x + ray->length * ray->dir.x;
 	wall_col -= floor(wall_col);
 	wall_hydrate_texture(wall);
-	wall->texture_column = (int)(wall_col * (double)wall->texture->height);
+	wall->texture_column = (int)(wall_col * (double)wall->texture->width);
 	wall->texture_step = 1.0 * wall->texture->height / wall->line_height;
 	wall->tex_pos = (wall->draw_start - WINDOW_HEIGHT / 2
 			+ wall->line_height / 2) * wall->texture_step;

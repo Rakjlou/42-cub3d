@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   game_loop_bonus.c                                  :+:      :+:    :+:   */
+/*   loop_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/18 15:50:19 by nsierra-          #+#    #+#             */
-/*   Updated: 2022/08/15 22:26:38 by nsierra-         ###   ########.fr       */
+/*   Updated: 2022/08/18 19:35:11 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 #include "map/minimap.h"
 #include "player.h"
 #include "mlx.h"
+
+#include "map/map.h"
 
 int	game_loop_callback(void)
 {
@@ -27,5 +29,9 @@ int	game_loop_callback(void)
 
 void	game_loop(void)
 {
+	t_tile	*tile;
+
+	tile = map_get_tile(3, 18);
+	tile->type = 'D';
 	mlx_loop(_window()->mlx);
 }

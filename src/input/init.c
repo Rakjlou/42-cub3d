@@ -6,7 +6,7 @@
 /*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/18 15:50:19 by nsierra-          #+#    #+#             */
-/*   Updated: 2022/07/22 22:42:22 by nsierra-         ###   ########.fr       */
+/*   Updated: 2022/08/18 19:43:59 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,8 @@ static int	on_keydown(int key)
 		input->rotate_left = TRUE;
 	else if (key == KEY_ARROW_RIGHT)
 		input->rotate_right = TRUE;
+	else if (key == KEY_SPACE)
+		input->use = TRUE;
 	return (0);
 }
 
@@ -55,6 +57,8 @@ static int	on_keyup(int key)
 		input->rotate_left = FALSE;
 	else if (key == KEY_ARROW_RIGHT)
 		input->rotate_right = FALSE;
+	else if (key == KEY_SPACE)
+		input->use = FALSE;
 	return (0);
 }
 

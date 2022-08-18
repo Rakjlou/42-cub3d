@@ -6,7 +6,7 @@
 /*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/01 14:55:44 by nsierra-          #+#    #+#             */
-/*   Updated: 2022/08/15 21:53:20 by nsierra-         ###   ########.fr       */
+/*   Updated: 2022/08/18 19:43:28 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@
 # define KEY_BACKWARD 115
 # define KEY_ARROW_LEFT 65361
 # define KEY_ARROW_RIGHT 65363
+# define KEY_SPACE 32
 
 # include "bool.h"
 # include "vectors.h"
