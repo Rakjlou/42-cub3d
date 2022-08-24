@@ -6,11 +6,11 @@
 #    By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/10 23:54:46 by nsierra-          #+#    #+#              #
-#    Updated: 2022/08/24 11:37:18 by nsierra-         ###   ########.fr        #
+#    Updated: 2022/08/24 12:00:45 by nsierra-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 # /!\ CAUTION /!\ IN PLAYER DEBUG, REMOVE DPRINTF CALLS
-NAME = cub3d
+NAME = cub3D
 
 VALGRIND = valgrind --leak-check=full --track-origins=yes --show-leak-kinds=all --show-reachable=yes
 #VALGRIND =

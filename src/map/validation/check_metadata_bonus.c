@@ -6,7 +6,7 @@
 /*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/25 20:07:37 by nsierra-          #+#    #+#             */
-/*   Updated: 2022/08/24 11:03:21 by nsierra-         ###   ########.fr       */
+/*   Updated: 2022/08/24 12:26:20 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,7 @@ static t_bool	check_meta_line(t_map_candidate *candidate, char **meta)
 			return (check_specific_meta(candidate, meta_value, i));
 		++i;
 	}
-	return (check_metadata_error_printf(meta, E_META_INVALID, meta_id));
+	return (check_metadata_error_printf(NULL, E_META_INVALID, meta_id));
 }
 
 t_bool	check_metadata(t_map_candidate *candidate)
