@@ -6,7 +6,7 @@
 /*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/18 15:50:19 by nsierra-          #+#    #+#             */
-/*   Updated: 2022/08/18 19:49:17 by nsierra-         ###   ########.fr       */
+/*   Updated: 2022/08/24 11:51:57 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@
 
 #include "map/map_tile.h"
 #include "map/map.h"
+
+#include "ftprintf.h"
 
 static void	update_mouse_movement(void)
 {
@@ -46,6 +48,24 @@ static void	update_mouse_movement(void)
 	}
 }
 
+static t_bool	ignore_use(t_input *input)
+{
+	static int	ignore = 0;
+
+	if (ignore > 0)
+	{
+		--ignore;
+		return (TRUE);
+	}
+	else if (input->use)
+	{
+		ignore = 10;
+		return (FALSE);
+	}
+	ignore = 0;
+	return (FALSE);
+}
+
 static void	update_use(void)
 {
 	t_tile		*tile;
@@ -55,13 +75,15 @@ static void	update_use(void)
 
 	input = _input();
 	player = _player();
-	if (!input->use)
+	if (ignore_use(input) || !input->use)
 		return ;
 	target.x = player->pos.x + (player->dir.x);
 	target.y = player->pos.y + (player->dir.y);
 	tile = map_get_tile(target.x, target.y);
 	if (tile && tile->type == 'D')
-		tile->type = '0';
+		tile->type = 'A';
+	else if (tile && tile->type == 'A')
+		tile->type = 'D';
 }
 
 void	player_update(void)
