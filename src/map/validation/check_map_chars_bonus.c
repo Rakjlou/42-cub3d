@@ -1,37 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   loop_bonus.c                                       :+:      :+:    :+:   */
+/*   check_map_chars_bonus.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/18 15:50:19 by nsierra-          #+#    #+#             */
-/*   Updated: 2022/08/24 10:20:16 by nsierra-         ###   ########.fr       */
+/*   Created: 2022/01/25 20:07:37 by nsierra-          #+#    #+#             */
+/*   Updated: 2022/08/24 10:28:09 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "render/render.h"
-#include "render/window.h"
-#include "map/minimap.h"
-#include "player.h"
-#include "mlx.h"
+#include "map/map_validation_bonus.h"
 
-#include "map/map.h"
-
-int	game_loop_callback(void)
+t_bool	check_map_chars(t_map_candidate *candidate)
 {
-	player_update();
-	render_colliders();
-	minimap_render();
-	window_refresh();
-	return (0);
-}
+	t_iter	iter;
+	char	*line;
+	int		i;
 
-void	game_loop(void)
-{
-	t_tile	*tile;
-
-	tile = map_get_tile(3, 18);
-	tile->type = 'D';
-	mlx_loop(_window()->mlx);
+	iter_init(&iter, &candidate->map, DESC);
+	while (iter_next(&iter))
+	{
+		line = (char *)iter.data;
+		i = 0;
+		while (line[i])
+		{
+			if (!ft_cvalid(line[i], MAP_CHARS))
+				return (fterr_set_error(E_MAP_CHAR), FALSE);
+			++i;
+		}
+	}
+	return (TRUE);
 }

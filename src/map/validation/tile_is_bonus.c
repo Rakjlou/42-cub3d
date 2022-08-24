@@ -1,37 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   loop_bonus.c                                       :+:      :+:    :+:   */
+/*   tile_is_bonus.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/18 15:50:19 by nsierra-          #+#    #+#             */
-/*   Updated: 2022/08/24 10:20:16 by nsierra-         ###   ########.fr       */
+/*   Created: 2022/07/14 03:12:04 by nsierra-          #+#    #+#             */
+/*   Updated: 2022/08/24 10:24:44 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "render/render.h"
-#include "render/window.h"
-#include "map/minimap.h"
-#include "player.h"
-#include "mlx.h"
+#include "map/map_validation_bonus.h"
 
-#include "map/map.h"
-
-int	game_loop_callback(void)
+t_bool	tile_is_floor(int tile)
 {
-	player_update();
-	render_colliders();
-	minimap_render();
-	window_refresh();
-	return (0);
+	return (ft_strchr(FLOOR_CHARS, tile) || ft_strchr(SPAWN_CHARS, tile)
+		|| ft_strchr(DOOR_CHARS, tile));
 }
 
-void	game_loop(void)
+t_bool	tile_is_outside(int tile)
 {
-	t_tile	*tile;
-
-	tile = map_get_tile(3, 18);
-	tile->type = 'D';
-	mlx_loop(_window()->mlx);
+	return (ft_strchr(OUTSIDE_CHARS, tile) != NULL);
 }

@@ -3,4 +3,5 @@
 *.a
 *.sublime*
 cub3d*
+checkrendu*
 spritesheet/

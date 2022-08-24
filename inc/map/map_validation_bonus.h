@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   map_validation.h                                   :+:      :+:    :+:   */
+/*   map_validation_bonus.h                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/24 21:26:59 by nsierra-          #+#    #+#             */
-/*   Updated: 2022/08/24 10:23:10 by nsierra-         ###   ########.fr       */
+/*   Updated: 2022/08/24 10:31:10 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MAP_VALIDATION_H
-# define MAP_VALIDATION_H
+#ifndef MAP_VALIDATION_BONUS_H
+# define MAP_VALIDATION_BONUS_H
 
 # define MANDATORY_EXTENSION ".cub"
 # define WALL_CHARS "1"
@@ -21,10 +21,11 @@
 # define SPAWN_SOUTH "S"
 # define SPAWN_EAST "E"
 # define SPAWN_WEST "W"
+# define DOOR_CHARS "D"
 /*# define SPAWN_CHARS SPAWN_NORTH SPAWN_SOUTH SPAWN_EAST SPAWN_WEST*/
 # define SPAWN_CHARS "NSEW"
 /*# define MAP_CHARS WALL_CHARS FLOOR_CHARS OUTSIDE_CHARS SPAWN_CHARS*/
-# define MAP_CHARS " 10NSEW"
+# define MAP_CHARS " 10NSEWD"
 
 # define FLOOR_VALIDATION 'F'
 
@@ -32,6 +33,7 @@
 # define SOUTH_ID "SO"
 # define EAST_ID "EA"
 # define WEST_ID "WE"
+# define DOOR_ID "DO"
 # define FLOOR_ID "F"
 # define CEILING_ID "C"
 # define META_ELEM_SIZE 2
