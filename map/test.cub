@@ -1,12 +1,7 @@
 NO ./resource/wall_0.xpm
 SO ./resource/wall_10.xpm
-WE ./resource/door.xpm
+WE ./resource/wall_3.xpm
 EA ./resource/wall_6.xpm
-
-EA ./resource/slin_smile.xpm
-NO ./resource/slin.xpm
-SO ./resource/slin_red.xpm
-WE ./resource/slin_green.xpm
 
 F 162,179,139
 C 104,167,173
@@ -14,7 +9,7 @@ C 104,167,173
         1111111111111111111111111
         1000000000110000000000001
         1011000001110000000000001
-        1001000000D000000000000W1
+        10010000000000000000000W1
 111111111011000001110000000000001
 100000000011000001110111111111111
 11110111111111011100000010001
