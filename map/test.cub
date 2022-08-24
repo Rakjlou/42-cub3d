@@ -6,6 +6,7 @@ EA ./resource/wall_6.xpm
 EA ./resource/slin_smile.xpm
 NO ./resource/slin.xpm
 SO ./resource/slin_red.xpm
+WE ./resource/slin_green.xpm
 
 F 162,179,139
 C 104,167,173

@@ -6,7 +6,7 @@
 #    By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/10 23:54:46 by nsierra-          #+#    #+#              #
-#    Updated: 2022/08/24 10:45:46 by nsierra-         ###   ########.fr        #
+#    Updated: 2022/08/24 11:10:43 by nsierra-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 # /!\ CAUTION /!\ IN PLAYER DEBUG, REMOVE DPRINTF CALLS
@@ -29,7 +29,6 @@ SRC_COMMON = src/main.c \
 	src/render/circle.c \
 	src/render/render_colliders.c \
 	src/render/texture.c \
-	src/render/window/init.c \
 	src/render/window/destroy.c \
 	src/render/window/refresh.c \
 	src/render/window/pixel.c \
@@ -75,6 +74,7 @@ SRC_MANDATORY = src/game/loop.c \
 	src/player/update.c \
 	src/map/validation/check_map_chars.c \
 	src/raycasting/raycast_wall_from_wcolumn.c \
+	src/render/window/init.c \
 
 SRC_BONUS = $(SRC_MANDATORY:.c=_bonus.c)
 

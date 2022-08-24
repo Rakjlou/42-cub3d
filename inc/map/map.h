@@ -6,7 +6,7 @@
 /*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/24 21:26:59 by nsierra-          #+#    #+#             */
-/*   Updated: 2022/08/12 12:10:07 by nsierra-         ###   ########.fr       */
+/*   Updated: 2022/08/24 11:06:21 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ typedef struct s_map
 	t_texture	texture_south;
 	t_texture	texture_east;
 	t_texture	texture_west;
+	t_texture	texture_door;
 	t_color		color_floor;
 	t_color		color_ceiling;
 	t_tile		**tiles;

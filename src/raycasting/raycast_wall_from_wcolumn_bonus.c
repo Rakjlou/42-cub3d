@@ -6,7 +6,7 @@
 /*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/18 15:50:19 by nsierra-          #+#    #+#             */
-/*   Updated: 2022/08/24 10:47:59 by nsierra-         ###   ########.fr       */
+/*   Updated: 2022/08/24 11:08:15 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,10 +34,11 @@ static void	wall_hydrate_texture(t_wall *wall)
 	texture[WALL_WEST] = &map->texture_west;
 	wall->texture = texture[wall->cardinal];
 	tile = map_get_tile(wall->ray.tile.x, wall->ray.tile.y);
-	if (wall->ray.length < 1.0 && wall->cardinal == WALL_NORTH)
-		wall->texture = texture[WALL_EAST];
-	else if (tile != NULL && tile->type == 'D')
+	if (wall->ray.length < 1.0 && wall->cardinal == WALL_SOUTH
+		&& tile != NULL && tile->type != 'D')
 		wall->texture = texture[WALL_NORTH];
+	else if (tile != NULL && tile->type == 'D')
+		wall->texture = &map->texture_door;
 }
 
 static void	compute_wall_texture(t_wall *wall, t_ray *ray)

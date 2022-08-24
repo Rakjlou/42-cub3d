@@ -6,7 +6,7 @@
 /*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/18 15:50:19 by nsierra-          #+#    #+#             */
-/*   Updated: 2022/08/24 10:20:16 by nsierra-         ###   ########.fr       */
+/*   Updated: 2022/08/24 10:54:29 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,5 @@ int	game_loop_callback(void)
 
 void	game_loop(void)
 {
-	t_tile	*tile;
-
-	tile = map_get_tile(3, 18);
-	tile->type = 'D';
 	mlx_loop(_window()->mlx);
 }
