@@ -6,7 +6,7 @@
 #    By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/10 23:54:46 by nsierra-          #+#    #+#              #
-#    Updated: 2022/08/24 11:10:43 by nsierra-         ###   ########.fr        #
+#    Updated: 2022/08/24 11:37:18 by nsierra-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 # /!\ CAUTION /!\ IN PLAYER DEBUG, REMOVE DPRINTF CALLS
@@ -61,7 +61,6 @@ SRC_COMMON = src/main.c \
 	src/map/validation/check_metadata_errors.c \
 	src/map/validation/check_metadata_helpers.c \
 	src/map/validation/check_walls.c \
-	src/map/validation/tile_is.c \
 	src/map/minimap/render.c \
 	src/map/minimap/render_colliders.c \
 	src/vectors/add.c \
@@ -75,6 +74,7 @@ SRC_MANDATORY = src/game/loop.c \
 	src/map/validation/check_map_chars.c \
 	src/raycasting/raycast_wall_from_wcolumn.c \
 	src/render/window/init.c \
+	src/map/validation/tile_is.c \
 
 SRC_BONUS = $(SRC_MANDATORY:.c=_bonus.c)
 
