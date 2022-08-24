@@ -6,7 +6,7 @@
 #    By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/10 23:54:46 by nsierra-          #+#    #+#              #
-#    Updated: 2022/08/24 10:27:42 by nsierra-         ###   ########.fr        #
+#    Updated: 2022/08/24 10:45:46 by nsierra-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 # /!\ CAUTION /!\ IN PLAYER DEBUG, REMOVE DPRINTF CALLS
@@ -70,11 +70,11 @@ SRC_COMMON = src/main.c \
 	src/raycasting/compute.c \
 	src/raycasting/ray_init.c \
 	src/raycasting/ray_hit.c \
-	src/raycasting/raycast_wall_from_wcolumn.c \
 
 SRC_MANDATORY = src/game/loop.c \
 	src/player/update.c \
 	src/map/validation/check_map_chars.c \
+	src/raycasting/raycast_wall_from_wcolumn.c \
 
 SRC_BONUS = $(SRC_MANDATORY:.c=_bonus.c)
 

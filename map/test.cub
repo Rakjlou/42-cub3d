@@ -2,6 +2,7 @@ NO ./resource/wall_0.xpm
 SO ./resource/wall_10.xpm
 WE ./resource/door.xpm
 EA ./resource/wall_6.xpm
+
 EA ./resource/slin_smile.xpm
 NO ./resource/slin.xpm
 SO ./resource/slin_red.xpm

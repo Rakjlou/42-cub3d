@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   raycast_wall_from_wcolumn.c                        :+:      :+:    :+:   */
+/*   raycast_wall_from_wcolumn_bonus.c                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nsierra- <nsierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/18 15:50:19 by nsierra-          #+#    #+#             */
-/*   Updated: 2022/08/24 10:47:46 by nsierra-         ###   ########.fr       */
+/*   Updated: 2022/08/24 10:47:59 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,12 @@
 #include "player.h"
 #include <math.h>
 
+#include <stdio.h>
+
 static void	wall_hydrate_texture(t_wall *wall)
 {
 	t_map		*map;
+	t_tile		*tile;
 	t_texture	*texture[WALL_CARDINAL_TOTAL];
 
 	map = _map();
@@ -30,6 +33,11 @@ static void	wall_hydrate_texture(t_wall *wall)
 	texture[WALL_EAST] = &map->texture_east;
 	texture[WALL_WEST] = &map->texture_west;
 	wall->texture = texture[wall->cardinal];
+	tile = map_get_tile(wall->ray.tile.x, wall->ray.tile.y);
+	if (wall->ray.length < 1.0 && wall->cardinal == WALL_NORTH)
+		wall->texture = texture[WALL_EAST];
+	else if (tile != NULL && tile->type == 'D')
+		wall->texture = texture[WALL_NORTH];
 }
 
 static void	compute_wall_texture(t_wall *wall, t_ray *ray)
